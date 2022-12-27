@@ -1,0 +1,171 @@
+/*TEMPLATE GENERAL*/ 
+
+a { color: #0879d5; text-decoration: none;}
+a:hover {text-decoration: underline;}
+body { background-color: #FFFFFF; border: 0; margin: 0; padding: 0; text-align: center; font-family: Arial; font-size: 76%; background:url(../images/fon_total_col.png)repeat-x;}
+.dr-mpnl-pnl-b, .rich-mpnl-body { border: 0; margin: 0; padding: 0; height:100%; width:100%; background:url(../images/fon_modal.jpg) repeat-x;}
+img { border: 0; margin: 0; padding: 0 }
+form { border: 0; margin: 0; padding: 0 }
+td{ vertical-align: top; }
+#ajuste{ width:100%; text-align:center}
+#contenedor{ width: 896px; margin-left:auto; margin-right:auto;}
+#degradePagina{ background:url(../images/degradePagina.png) repeat-y; width:890px; height:100%;}
+.cabezote{background:url(../images/cabezote.jpg) no-repeat; width:890px; height:168px; display:block;}
+.piePagina{background:url(../images/piePagina.jpg) no-repeat; width:890px; height:50px; display:block;}
+.linkUno{ font-size:11px; font-weight:bold; color:#FFFFFF; font-family:Arial}
+.linkUno:link{ font-size:11px; font-weight:bold; text-decoration:none; color:#FFFFFF; font-family:Arial}
+.linkUno:hover{ font-size:11px; font-weight:bold; text-decoration:underline; color:#FFFFFF; font-family:Arial}
+.linksSuperior{ color:#FFFFFF; padding-top:5px; padding-left:18px; letter-spacing:-0.1pt;}
+.linkLogo{color:#1C5780; padding-top:3px; padding-right:18px;}
+.usuarioContenedor{color:#1C5780; padding-top:100px; padding-right:18px;}
+.usuarioMenu{color:#1C5780; padding-top:8px; padding-right:0px;}
+.linkDos{ font-size:11px; font-weight:bold; color:#114200; font-family:Arial}
+.linkDos:link{ font-size:11px; font-weight:bold; text-decoration:none; color:#1C5780; font-family:Arial}
+.linkDos:hover{ font-size:11px; font-weight:bold; text-decoration:underline; color:#1C5780; font-family:Arial}
+.linkTres{ font-size:11px; font-weight:bold; color:#333333; font-family:Arial}
+.linkTres:link{ font-size:11px; font-weight:bold; text-decoration:none; color:#333333; font-family:Arial}
+.linkTres:hover{ font-size:11px; font-weight:bold; text-decoration:underline; color:#1C5780; font-family:Arial}
+.linkMenu{ background-image: url(../images/bulletMenuGris.gif); background-repeat: no-repeat; padding-left: 23px; background-position: 1px 0px; font-size: 11px; font-weight: bold; color: #333333; text-align: left;}
+.linkMenu:link{ background-image: url(../images/bulletMenuGris.gif); background-repeat: no-repeat; padding-left: 23px; background-position: 1px 0px; font-size: 11px; font-weight: bold; color: #333333; text-align: left; text-decoration:none;}
+.linkMenu:hover{ background-image: url(../images/bulletMenu.gif); background-repeat: no-repeat; padding-left: 23px; background-position: 1px 0px; font-size: 11px; font-weight: bold; color: #2B5522; text-align: left; text-decoration:underline;}
+.usuario{ font-size:11px; font-weight:bold; color:#333333; font-family:Arial}
+
+/*Fondo Menu*/
+.bkgMenu{ background-color: #FFFFFF; repeat-y; width:15px;}
+
+/***/
+.tablaGenerica{}
+.tablaGenerica td{ vertical-align:top;}
+.seccion_menu{background:url(../images/bot_secc_1.gif) no-repeat; background-color:#A4CAF1; border-bottom:1px solid #B3C0D3; border-right:1px solid #B3C0D3; font-family:Verdana, Arial, Helvetica, sans-serif; text-align:left; padding:3px 0 3px 22px;}
+.linkPpal{ font-size:11px; font-weight:bold; color:#1C5780; font-family:Arial;}
+.linkPpal:link{ font-size:11px; font-weight:bold; text-decoration:none; color:#1C5780; font-family:Arial;}
+.linkPpal:hover{ font-size:11px; font-weight:bold; text-decoration:underline; color:#1C5780; font-family:Arial;}
+.subseccion_menu{background:url(../images/bot_subsecc_1.gif) no-repeat; background-color:#D1E2F4; border-bottom:1px solid #B3C0D3; border-right:1px solid #B3C0D3; padding:3px 0 3px 36px; text-align:left;}
+.sublinkPpal{ font-size:11px; color:#1C5780; font-family:Arial;}
+.sublinkPpal:link{ font-size:11px; text-decoration:none; color:#1C5780; font-family:Arial;}
+.sublinkPpal:hover{ font-size:11px; text-decoration:underline; color:#1C5780; font-family:Arial;}
+
+/**/
+.fondoContenedor{ background-color:#FFFFFF; padding:1px;}
+.titulos{ background:url(../images/tituloOpcion.jpg) no-repeat; height:25px; width:100%; color:#FFFFFF; font-size:12px; font-family:Verdana, Arial, Helvetica, sans-serif; padding:9px 9 10 10px; text-align:left; font-weight:bold; padding-left: 23px; padding-top: 7px;}
+.contenido{ background:url(../images/fon_cuadromedico.jpg) no-repeat; width:100%;}
+
+/*TABLAS*/ 
+.BordeTablas{border-color:#E9E9EE;border-spacing:1px;border:1px;border-spacing:1px;background-color:#E9E9EE;}
+.BordeTablasDos{border-color:#E9E9EE;border-spacing:1px;border:1px;border-spacing:1px;background-color:#E9E9EE;text-align:center;}
+.cabeceraTablas{background-position:0 -1698px;}
+.cabeceraTablas td{background-position:0 -1698px;}
+.lineadivision {height: 5px;font-weight: bold;border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color: #BBDDFF;}
+.fondoazul{background:#ACCDF9;}
+tr.impar{background-color:#F0F9FF;}
+tr.par{background-color:#FFFFFF;}
+td.simple{padding:0;}
+.miniminimumColum{width:5%;}
+.small2Column{width:15%;}
+.txtCentrado{text-align:center;}
+.cabeceraDegrade{background-color:#BBDDFF;font-size:11px;border-top-width:1px;border-top-style:solid;border-top-color:#FFFFFF;height:18px;font-weight:bold;text-align:center;background-position:0 -1698px;color:#333333;}
+.cajaSimpleCalendario{color:#01658F;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-top-style:solid;border-bottom-style:solid;border-left-style:solid;border-top-color:#D2E4F0;border-right-color:#A0B7EA;border-bottom-color:#A0B7EA;border-left-color:#D2E4F0;height:16px;background-color:#FFFFFF;font-size:10px;padding-bottom:1px;padding-top:1px;padding-left:1px;padding-right:1px;width:55px;}
+.cajaHorasCalendario{color:#01658F;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-top-style:solid;border-bottom-style:solid;border-left-style:solid;border-top-color:#D2E4F0;border-right-color:#A0B7EA;border-bottom-color:#A0B7EA;border-left-color:#D2E4F0;height:16px;background-color:#FFFFFF;font-size:10px;padding-bottom:1px;padding-top:1px;padding-left:1px;padding-right:1px;width:90px;}
+.BordeTablasTres{background-color:transparent;text-align:left;border-color:transparent; border:0;}
+.BordeTablasTres td{background-color:transparent;text-align:left;border-color:transparent; border:0;}
+.ModalLoading{background-color:transparent;border-color:transparent; border:0;}
+
+/*FONDO NUEVO*/ 
+.fondoRecordarClave{background-color:#d4e2ec; width: 100%; height: 320px;}
+.lineadivisionN {border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color: #bbddff;}
+
+/*PORCENTAJE DE LAS COLUMNAS*/ 
+.bigColumn {width: 90%;}
+.maxColumn {width: 80%;}
+.mainColumn {width: 70%;}
+.middleColumn {width: 50%;}
+.mediumColumn {width: 40%;}
+.simpleColumn {width: 30%;}
+.smallColumn {width: 20%;}
+.minimumColum {width: 10%;}
+.miniminimumColum{width:5%;}
+.ceroColum{width:1%;}
+.small2Column{width:15%;}
+
+/*TITULOS Y SUBTITULOS*/ 
+.titulosBusqueda {background-image: url(../images/icono_lupa2.gif);padding-left: 22px;padding-top: 8px;background-position: 4px center;font-size: 11px;color: #333333;background-repeat: no-repeat;height: 18px;font-weight: bold;border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color: #BBDDFF;}
+.subtNegrilla {font-size: 10pt;font-weight: normal;font-style: normal;color: #333333;}
+.subSec {background-image: url(../images/vineta3.gif);padding-left: 13px;padding-top: 3px;background-position: 3px center;font-size: 11px;color: #333333;background-repeat: no-repeat;height: 18px;font-weight: bold;border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color: #BBDDFF;}
+.titulosPagina {font-size: 12px;font-weight: bold;color: #FFFFFF;text-decoration:none;}
+.subtitulosPaginaMiga {font-size: 10px;font-weight: bold;color: #FFFFFF;text-decoration:none;}
+
+/*TITULOS Y SUBTITULOS NUEVOS*/ 
+.tituloAdminClave {font-size: 16px;font-weight: bold;color: #ff7800;text-decoration:none;}
+
+/*CAJAS*/ 
+.cajaSimple {color: #01658F;border-top-width: 1px;border-right-width: 1px;border-bottom-width: 1px;border-left-width: 1px;border-top-style: solid;border-bottom-style: solid;border-left-style: solid;border-top-color: #D2E4F0;border-right-color: #A0B7EA;border-bottom-color: #A0B7EA;border-left-color: #D2E4F0;height: 17px;background-color: #FFFFFF;font-size: 11px;padding-bottom: 1px;padding-top: 1px;padding-left: 1px;padding-right: 1px;}
+.cajaSimpleProtegido {color: #01658F;border-top-width: 1px;border-right-width: 1px;border-bottom-width: 1px;border-left-width: 1px;border-top-style: solid;border-bottom-style: solid;border-left-style: solid;border-top-color: #D2E4F0;border-right-color: #A0B7EA;border-bottom-color: #A0B7EA;border-left-color: #D2E4F0;height: 16px;background-color: #DBE9FD;font-size: 9px;padding-bottom: 1px;padding-top: 1px;padding-left: 1px;padding-right: 1px;}
+.cajaAreaTexto {color: #01658F;border-top-width: 1px;border-right-width: 1px;border-bottom-width: 1px;border-left-width: 1px;border-top-style: solid;border-right-style: solid;border-bottom-style: solid;border-left-style: solid;border-top-color: #D2E4F0;border-right-color: #A0B7EA;border-bottom-color: #A0B7EA;border-left-color: #D2E4F0;background-color: #FFFFFF;font-size: 10px;height: 55px;font-family: Arial, Helvetica, sans-serif;padding-bottom: 2px;padding-top: 2px;padding-left: 4px;padding-right: 2px;}
+.cajaAreaTextoProtegido {color: #01658F;border-top-width: 1px;border-right-width: 1px;border-bottom-width: 1px;border-left-width: 1px;border-top-style: solid;border-right-style: solid;border-bottom-style: solid;border-left-style: solid;border-top-color: #D2E4F0;border-right-color: #A0B7EA;border-bottom-color: #A0B7EA;border-left-color: #D2E4F0;height: 35px;font-size: 10px;background-color: #DBE9FD;font-family: Arial, Helvetica, sans-serif;padding-bottom: 2px;padding-top: 2px;padding-left: 2px;padding-right: 2px;overflow: scroll;overflow-y: scroll;overflow-x: hidden;overflow: -moz-scrollbars-vertical;}
+.cajaGrande {color: #01658F;border-top-width: 1px;border-right-width: 1px;border-bottom-width: 1px;border-left-width: 1px;border-top-style: solid;border-right-style: solid;border-bottom-style: solid;border-left-style: solid;border-top-color: #D2E4F0;border-right-color: #A0B7EA;border-bottom-color: #A0B7EA;border-left-color: #D2E4F0;height: 35px;font-size: 10px;background-color: #FFFFFF;font-family: Arial, Helvetica, sans-serif;padding-bottom: 2px;padding-top: 2px;padding-left: 2px;padding-right: 2px;overflow: scroll;overflow-y: scroll;overflow-x: hidden;overflow: -moz-scrollbars-vertical;}
+.cajaAreaTextoProtegidoDos {color: #01658F;	border-top-width: 1px; border-right-width: 1px;	border-bottom-width: 1px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: solid; border-top-color: #D2E4F0;	border-right-color: #A0B7EA; border-bottom-color: #A0B7EA; border-left-color: #D2E4F0;	height: 30px; font-size: 11px; background-color: #DBE9FD; font-family: Arial, Helvetica, sans-serif; padding-bottom: 2px; padding-top: 2px; padding-left: 2px; padding-right: 2px; overflow: scroll; overflow-y: scroll; overflow-x: hidden; overflow: -moz-scrollbars-vertical;}
+select.combo {color: #01658F;background-color: #ffffff;border-top-width: 1px;border-right-width: 1px;border-bottom-width: 1px;border-left-width: 1px;border-top-style: solid;border-right-style: solid;border-bottom-style: solid;border-left-style: solid;border-top-color: #D2E4F0;border-right-color: #A0B7EA;border-bottom-color: #A0B7EA;border-left-color: #D2E4F0;height: 22px;font-size: 11px;}
+select.comboProtegido {color: #666666;background-color: #E1DED9;border-top-width: 1px;border-right-width: 1px;border-bottom-width: 1px;border-left-width: 1px;border-top-style: solid;border-right-style: solid;border-bottom-style: solid;border-left-style: solid;border-top-color: #999999;border-right-color: #999999;border-bottom-color: #999999;border-left-color: #999999;height: 22px;font-size: 11px;}                          
+
+/*TEXTOS ALERTAS*/ 
+.txtUnoAlerta {background-image: url(../images/alerta.gif);padding-left: 20px;padding-top: 5px;background-position: 3px center;font-size: 11px;color: #333333;background-repeat: no-repeat;height: 18px;font-weight: bold;}
+.txtUnoAlertaDos {background-image: url(../images/alerta.gif);padding-left: 20px;padding-top: 5px;background-position: 3px center;font-size: 11px;color: #620000;background-repeat: no-repeat;height: 18px;font-weight: bold;}
+.txtUnoInfo {background-image: url(../images/info.gif);padding-left: 25px;padding-top: 8px;background-position: 3px center;font-size: 11px;color: #000000;background-repeat: no-repeat;height: 18px;font-weight: bold;}
+.txtUnoError {background-image: url(../images/error.gif);padding-left: 24px;padding-top: 6px;background-position: 5px center;font-size: 11px;color: #333333;background-repeat: no-repeat;height: 18px;font-weight: bold;}
+.message {margin-top: 6px; margin-bottom: 5px; font-size: 10px;	color: #990000;	font-weight: bold;padding-left: 2px;margin-left: 1px;}
+
+/*TEXTOS GENERAL*/ 
+.txtCampoRequerido {background-image: url(../images/vineta.gif);background-repeat: no-repeat;padding-left: 13px;background-position: 3px 1px;font-size: 10px;font-weight: bold;color: #333333;text-align: left;}
+.txtCampoRequeridoUno {border-left-color: #FFFFFF;background-image: url(../images/vineta.gif);background-repeat: no-repeat;padding-left: 13px;background-position: 3px 3px;font-size: 11px;font-weight: bold;color: #333333;text-align: left;}
+.textogeneral {font-size: 11px;font-weight: normal;color: #333333;text-decoration:none;}
+.textogeneral2 {font-size: 11px;font-weight: normal;color: #333333;padding-left: 7px;}
+.textogeneral3 {font-size: 10px;font-weight: bold;color: #333333;text-decoration:none;}
+.textogeneral4 {font-size: 11px;font-weight: bold;color: #333333;text-decoration:none;}
+.txtTituloNegrilla{border-left-color:#FFFFFF;background-image: url(../images/vineta.gif);background-repeat: no-repeat;padding-left:13px;font-size:11px;font-weight:bold;color:#333333;}
+.txtUnoVin {border-left-color: #FFFFFF;background-image: url(../images/vineta.gif);background-repeat: no-repeat;padding-left: 13px;background-position: 3px 3px;font-size: 10px;font-weight: normal;color: #333333;text-align: left;}
+.txtUnoVinRequerido {border-left-color: #FFFFFF;background-image: url(../images/vineta.gif);background-repeat: no-repeat;padding-left: 13px;background-position: 3px 3px;font-size: 10px;font-weight: bold;color: #333333;text-align: left;}
+.textoDif {font-size: 11px;font-weight: normal;color: #333333;padding-left: 7px; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; white-space: nowrap; width: 180px;}
+.textoDifDos {font-size: 11px;font-weight: normal;color: #333333;padding-left: 7px; overflow: hidden; text-overflow: ellipsis; -o-text-overflow: ellipsis; white-space: nowrap; width: 70px;}
+
+/*TOOLTIPS - ASTERISCO REQUERIDO*/ 
+.ToolTipUno{background-color:#C8F1B8;border:1px solid #73CC42;color:#276114;font-size:11px;font-weight:bold;}
+.ToolTipDos{background-color:#FFEBD7;border:1px solid #FF9933;color:#7D3F00;font-size:11px;font-weight:bold;}
+.ToolTipTres{background-color:#EEF3F7;border:1px solid #B0BAC4;color:#5E6A79;font-size:12px;font-weight:normal;}
+.asteriscoRequerido {color: #BF0000;font-size: 11px;padding-bottom: 5px;font-weight: bold;height: 12px;width: 12px;margin: 2px;}
+
+/*FINDER*/ 
+.fondoInputBuscar{background-color: #DFE9F3;font-size:11px;color:#01658F;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-left-style:solid;border-top-color:#D2E4F0;border-right-color:#A0B7EA;border-bottom-color:#A0B7EA;border-left-color:#D2E4F0;padding:1px;height:16px;}
+.fondoInputBuscar[disabled="disabled"]{background-color: #DFE9F3;font-size:11px;color:#01658F;border:0px;padding:1px;height:18px;}
+.fondoInputBuscarDos{background-color: #DFE9F3;padding-left: 1px;font-size:12px;color:#01658F;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-left-style:solid;border-top-color:#D2E4F0;border-right-color:#A0B7EA;border-bottom-color:#A0B7EA;border-left-color:#D2E4F0;font-family:Arial,Helvetica,sans-serif;overflow:scroll;overflow-y:scroll;overflow-x:hidden;overflow:-moz-scrollbars-vertical;}
+.fondoInputBuscarDos[disabled="true"]{background-color: #DFE9F3;padding-left: 1px;font-size:12px;color:#01658F;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-left-style:solid;border-top-color:#D2E4F0;border-right-color:#A0B7EA;border-bottom-color:#A0B7EA;border-left-color:#D2E4F0;background-color:#ffffff;font-family:Arial,Helvetica,sans-serif;overflow:scroll;overflow-y:scroll;overflow-x:hidden;overflow:-moz-scrollbars-vertical;}
+.fondoInputBuscarDos[readonly="readonly"]{background-color: #DFE9F3;padding-left: 1px;font-size:12px;color:#01658F;border-top-width:1px;border-right-width:1px;border-bottom-width:1px;border-left-width:1px;border-top-style:solid;border-right-style:solid;border-bottom-style:solid;border-left-style:solid;border-top-color:#D2E4F0;border-right-color:#A0B7EA;border-bottom-color:#A0B7EA;border-left-color:#D2E4F0;background-color:#ffffff;font-family:Arial,Helvetica,sans-serif;overflow:scroll;overflow-y:scroll;overflow-x:hidden;overflow:-moz-scrollbars-vertical;}
+.botonBuscarFinder { background-image:url(../images/Bot_buscar.gif);background-repeat:no-repeat;border:none;width:27px;height:25px;}
+
+/*BOTONES Y LINKS*/ 
+.botonBuscarNivelUno { background-image:url(../images/icono_lupa.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:57px;height:20px;}
+.botonGuardarNivelUno { background-image:url(../images/icono_guardar.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:66px;height:20px;}
+.botonLimpiarNivelUno { background-image:url(../images/icono_limpiar.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:66px;height:20px;}
+.botonGuardarNivelDos { background-image:url(../images/boton_guardar.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:13px;height:16px;}
+.botonLimpiarNivelDos { background-image:url(../images/boton_limpiar.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:15px;height:17px;}
+.botonEnviarContrasenaNivelDos { background-image:url(../images/boton_enviar.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:17px;height:17px;}
+.botonCancelarNivelDos { background-image:url(../images/boton_cancelar.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:15px;height:16px;}
+.botonModificarNivelDos { background-image:url(../images/boton_modificar.gif);background-repeat:no-repeat; background-color:transparent; border:none;width:13px;height:16px;}
+.botonAutorizaDelegaNivelDos { background-image:url(../images/boton_autorizacionDelegados.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:15px;height:15px;}
+.botonAutorizaPrestadNivelDos { background-image:url(../images/boton_autorizacionPrestadores.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:15px;height:15px;}
+.botonDesautorizarNivelDos { background-image:url(../images/boton_desautorizar.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:15px;height:15px;}
+.botonNoDesautorizarNivelDos { background-image:url(../images/boton_Nodesautorizar.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:15px;height:15px;}
+input.boton { background: url(../img/fondoBoton.gif);font-size: 11px;color: #333333; border: 1px solid #8DADBA;} 
+.botonAgregNivelDos { background-image:url(../images/Bot_eliminar.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:27px;height:16px;}
+.botonCancelNivelDos { background-image:url(../images/Bot_agregar.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:27px;height:16px;}
+.botonBuscarNivelDos { background-image:url(../images/icono_lupa2.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:14px;height:14px;}
+.botonVerDetalleNivelDos { background-image:url(../images/boton_verDetalle.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:13px;height:16px;}
+.botonAdminDeleNivelDos { background-image:url(../images/boton_admDeleg.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:17px;height:17px;}
+.botonAdminAdminNivelDos { background-image:url(../images/boton_admAdmin.gif);background-repeat:no-repeat;background-color:transparent; border:none;width:17px;height:17px;}
+
+/*BOTONES NUEVOS*/ 
+.botonNCambiarNivelUno { background-image:url(../images/btnN_cambiar.png);background-repeat:no-repeat;background-color:transparent; border:none;width:122px;height:32px;}
+.botonNLimpiarNivelUno { background-image:url(../images/btnN_limpiar.png);background-repeat:no-repeat;background-color:transparent; border:none;width:109px;height:32px;}
+.botonNRecordarNivelUno { background-image:url(../images/btnN_recordar.png);background-repeat:no-repeat;background-color:transparent; border:none;width:122px;height:32px;}
+
+/*SCROLL PARA MODALES PARAMETRIZACION*/ 
+.scrollTipoUno {overflow:auto; height:255px; width:790px;}

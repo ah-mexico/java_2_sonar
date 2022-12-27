@@ -1,0 +1,19 @@
+<cfgList>
+	<cfg module="administracion" 
+		 source="D:\Projects\COLSANITAS\14_LoginAdmin\Fuentes_Keralty\Aplicacion\src\LoginAdmin-ear\resources\administracion.xml" 
+		 description="Modulo de administracion"/>
+
+	<cfg module="gaudi" 
+		 source="D:\Projects\COLSANITAS\14_LoginAdmin\Fuentes_Keralty\Aplicacion\src\LoginAdmin-ear\resources\sistemaCfg.xml" 
+		 description="Modulo de utilidades generales de Gaudi"/>
+
+
+	<cfg module="guiseg" 
+		 source="D:\Projects\COLSANITAS\14_LoginAdmin\Fuentes_Keralty\Aplicacion\src\LoginAdmin-ear\resources\guisegCfg.xml" 
+		 description="Modulo de seguridad de GUIAuthorization"/>
+		 
+	<cfg module="sistema" 
+		 source="D:\Projects\COLSANITAS\14_LoginAdmin\Fuentes_Keralty\Aplicacion\src\LoginAdmin-ear\resources\sistemaCfg.xml" 
+		 description="Modulo de utilidades generales de Gaudi"/>
+		 
+</cfgList>

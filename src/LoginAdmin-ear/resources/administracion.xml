@@ -1,0 +1,63 @@
+<cfg>
+  <item name="PATH_USERS" description="Path de rama de usuario" value="ou=Externos,o=sanitas" />
+  <item name="ldap_url" description="URL LDAP" value="ldap://anteo.colsanitas.com:389" />
+  <item name="slow_bind" description="conexion a ldap" value="false" />
+  <item name="user_priv" description="Usuario LDAP" value="Ak1vhtBAnBQzROyv/r38P6GDNdmSyg3JNJfv2jUQztE=" />
+  <item name="pass_user_priv" description="Clave LDAP" value="NCQhEfVjUF44+hFLk6RDTgbqi/TwQ2QOYmUqLjx/5yk=" />
+  <item name="PATH_USERS.internos" description="Path de rama de usuario" value="ou=Users,o=sanitas" />
+  <item name="PATH_ROLES.internos" description="Path de rama de usuario" value="ou=Roles,o=sanitas" />
+  <item name="PATH_APPLICATIONS.internos" description="Path de rama de usuario" value="ou=Aplicaciones,o=sanitas" />
+  <item name="PATH_HOSTING.internos" description="Path de rama de usuario" value="o=hosting,o=sanitas" />
+  <item name="ldap_url.internos" description="URL LDAP" value="ldap://anteo.colsanitas.com:389" />
+  <item name="slow_bind.internos" description="conexion a ldap" value="false" />
+  <item name="user_priv.internos" description="Usuario LDAP" value="Ak1vhtBAnBQzROyv/r38P6GDNdmSyg3JNJfv2jUQztE=" />
+  <item name="pass_user_priv.internos" description="Clave LDAP" value="ZObgOWHFgye2P7vQ933R1cknY6KegawiI5MWJahrP/E=" />
+  <item name="email_account" description="Cuenta email Loginadmin" value="loginadminfrom@pruebas.colsanitas.com" />
+  <item name="name_account" description="nombre remitente email" value="Pruebas LoginAdmin" />
+  <item name="sizeKey" description="cantidad caracteres en password" value="8" />
+  <item name="prefijo" description="Prefijo Ldap" value=".prest" />
+  <item name="rolFuncionario" description="Configuracion rol funcionario" value="Registrar Usuario Administrador prestador" />
+  <item name="wsdlLocationBioSanitas" description="WSDL BioSanitas" value="http://neptuno.colsanitas.com:8580/BioSanitasWS/LoginAdminWS?wsdl" />
+  <item name="namespaceURIBioSanitas" description="namespaceURIBioSanitas" value="http://ejb.business.ws.biosanitas.osi.com/" />
+  <item name="localPartBioSanitas" description="localPartBioSanitas" value="LoginAdminEJBWSService" />
+  <item name="idRolAdminPrest" description="id rol de administrar prestadores">
+    <value>5502</value>
+  </item>
+  <item name="idRolAdminDelegado" description="id rol de administrar funcionarios">
+    <value>5504</value>
+  </item>
+  <item name="pwd_expiration_days" description="Tiempo en días que tarda en expirar una clave" value="90" />
+  <item name="estadoIniBlocUser" description="Estado inicial de bloqueo de usuario" value="false" />
+  <item name="msgValidacionMail" description="Mensaje de validación de email" value="El formato de email no es valido" />
+  <item name="rolValidoLoginAdmin" description="Permiso comun que comparte el rol de funcionario y administrador de prestador" value="Crear Usuario Del Sistema" />
+  <item name="rolAdminPrestador" description="Configuracion rol administrar prestador" value="Autorizar Usuario Delegado" />
+  <!-- Código de los tipos de documentos utilizados en Azimut -->
+  <item name="cedulaCiuadadania" description="Cedula de ciudadania" value="1" />
+  <item name="cedulaExtranjeria" description="Cedula de extranjeria" value="2" />
+  <item name="pasaporte" description="Pasaporte" value="6" />
+  <item name="nit" description="Número de identificación tributaria" value="4" />
+  <!-- Tipos de relaciones -->
+  <item name="tipoRelaAdministrador" description="Valor del tipo de relación administrador" value="1" />
+  <item name="tipoRelaDelagado" description="Valor del tipo de relación delegado" value="2" />
+  <item name="msgValidacionLogin" description="Mensaje de validación de login" value="Sólo se permiten letras (a-z), números (0-9), puntos (.) y guiones (_ y -)." />
+  <item name="ConsultarUsuarioMaxResults" description="Máximo número de resultado de devuelve la consulta de usuarios" value="50" />
+  <item name="tipoRelaCreadoPor" description="Parametro generado automaticamente" value="0" />
+  <item name="remenberNewPassWord" description="Parametro generado automaticamente" value="true" />
+  <item name="lockAccountValue" description="Parametro generado automaticamente" value="000001010000Z" />
+  <item name="estadoActPrestadorAzimut" description="Describe el estado activo del prestador proporcionado por el web service de Azimut" value="ACTIVO" />
+  <item name="permisoFuncionarioPlantillaRole" description="Se utiliza para gestionar la plantilla de roles solo con role funcionario" value="Autorizar Administrador" />
+  <item name="domainNoPermitidos" description="Lista de dominios que la aplicación no debe permitir, el filtro se debe realizar por el campo de la bd domain_short_name">
+    <value>LoginAdmin</value>
+  </item>
+  <item name="msgExepcionPrestNotMig" description="Mensaje de validación de prestador no migrado a azimut" value="Prestador No Migrado" />
+  <item name="estadoRetiradoPrestadorAzimut" description="Describe el estado retirado del prestador proporcionado por el web service de Azimut" value="RETIRADO" />
+  <item name="URL_AUTENTICADOR_DESCAGAR_INSTALADOR" description="Url para descargar instalador del authenticador" value="http://chia.colsanitas.com/instaladores/alphons/instaladorAutenticadorAlphons.iso" />
+  <item name="URL_AUTENTICADOR_ACTIVACION_LICENCIA" description="Url para la activación de licencia" value="http://pruebas.colsanitas.com:8380/Alphons/AlphonsActivarLicenciaServlet?" />
+  <item name="URL_LOGIN_ADMIN" description="Url  de la aplicacion LoginAdmin" value="http://192.168.139.245:8080/LoginAdmin" />
+  <item name="USER_LOGIN_ADMIN"    description="Rol de administrador de la aplicacion LoginAdmin"  value="Administrador Funcionario OSI" />
+  <item name="wsdlNotificacion" description="URL del servicio de notificacion electronica" value="http://172.18.46.58:8283/services/NotificacionElectronica?wsdl" />
+  <item name="nombreAplicacion" description="Nombre de la aplicacion ante el servicio de notificacion" value="loginAdmin" />
+  <item name="Certimail" description="Tipo de certificacion de notificacion electronica" value="CNC" />
+
+
+</cfg>

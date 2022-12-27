@@ -1,0 +1,89 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:his="http://colsanitas.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="../layout/template.xhtml">
+
+	<ui:define name="contenido">
+		<f:view>
+			<script type="text/javascript" language="javascript">
+			function clickRadio (radio) {
+				for (i=0; i &lt; document.getElementsByTagName('input').length; i++) {
+					if (document.getElementsByTagName('input')[i].type == 'radio' &amp;&amp; 
+						document.getElementsByTagName('input')[i].id != radio.id) {
+						document.getElementsByTagName('input')[i].checked=false;
+					}
+				}
+			}
+		</script>
+			<a:form id="formAdministrarAutenticador">
+			
+			
+
+				<a:region renderRegionOnly="false" id="regionFormAdministrarAutenticador">
+				
+				
+									
+					<rich:panel id="panelAdministracionAutenticador">
+						<f:facet name="header">
+							<h:panelGroup>
+								<h:outputText value="#{msg.administrarAutenticador}"></h:outputText>
+							</h:panelGroup>
+						</f:facet>
+						
+						<h:panelGroup id="pgMsgParamAuth">
+							<h:outputLabel value="#{administraAutenticadorWeb.mensaje}" style="COLOR: #ff0000; FONT-WEIGHT: bold;"/>
+						</h:panelGroup>
+						
+						<h:panelGrid columns="2">
+							<h:outputLabel value="#{msg.prestador}" />
+							<h:selectOneMenu value="#{administraAutenticadorWeb.cdperson}"
+											             id="prestador">
+									<f:selectItems value="#{administraAutenticadorWeb.prestadores}" />
+							</h:selectOneMenu>
+						</h:panelGrid>
+						
+						
+						<h:panelGrid columns="3" id="panelAdministrarAutenticador">
+							
+							
+							<h:graphicImage value="/images/icono_descargar_instalador.png" id="imgDescargarInstalador" width="40" height="40" style="margin: auto; display: block" >
+									<rich:toolTip value="#{msg.descargar_instalador}" />
+									<a:support event="onclick" action="#{administraAutenticadorWeb.descargarInstaladorAction}" reRender="pgMsgParamAuth"/>
+								</h:graphicImage>
+								
+							
+							<h:graphicImage value="/images/left.png" id="imgSeparador" width="40" height="40" style="margin: auto; display: block" />
+								
+							<h:graphicImage value="/images/alphonsActivo.png" id="imgActivarLicencia" width="40" height="40" style="margin: auto; display: block">
+									<rich:toolTip value="#{msg.activar_licencia}" />
+									<a:support event="onclick" action="#{administraAutenticadorWeb.activarLicenciaAction}" reRender="pgMsgParamAuth"/>
+								</h:graphicImage>
+							
+								
+							
+							
+							<h:outputText value="#{msg.descargar_instalador}" style="margin: auto; display: block"/>
+
+								<h:outputText value="" /> 
+
+							<h:outputText value="#{msg.activar_licencia}" style="margin: auto; display: block"/>
+						
+						</h:panelGrid>
+					
+						
+						
+					</rich:panel>
+				</a:region>
+			</a:form>
+			
+		</f:view>
+	</ui:define>
+</ui:composition>

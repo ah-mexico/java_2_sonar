@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich">
+	
+	<f:view>
+	<h:form id="formMenu">
+
+		<h:panelGrid id="panelMenuInicio" class="horizontal-menu-cell"
+			columnClasses="optionList" columns="11" cellspacing="0"
+			cellpadding="0" border="0">
+			
+			
+			<h:panelGroup rendered="#{identity.hasRole(msg.permiso_registrar_usuario_administrador)}">
+				
+				</h:panelGroup>
+
+			
+				<h:panelGroup rendered="#{identity.hasRole(msg.permiso_registrar_usuario_delegado)}">
+					
+				</h:panelGroup>
+			<rich:dropDownMenu rendered="#{identity.hasRole(msg.permiso_consultar_usuario)}">
+				<f:facet name="label">
+					<h:panelGroup>						
+							<s:link id="menuConsulUsuario" view="/administracion/consultarUsuario.xhtml" value="#{msg.consul_usuario_titulo_consultarUsuario}" styleClass="linkMenu" propagation="none"/>				
+					</h:panelGroup>
+				</f:facet>
+			</rich:dropDownMenu>
+				<h:panelGroup rendered="#{identity.hasRole(msg.permiso_consultar_usuario)}">
+					<div style="width: 20px;" align="center">
+						<h:outputText value="|"  /> 
+					</div>
+				</h:panelGroup>
+			<rich:dropDownMenu>
+				<f:facet name="label">
+					<h:panelGroup>						
+							<s:link id="menuAdminPassword" view="/public/administrarContrasena.xhtml" value="#{msg.admin_clave_titulo_administrarContrasena}" styleClass="linkMenu" propagation="none"/>				
+					</h:panelGroup>
+				</f:facet>
+			</rich:dropDownMenu >
+			
+			<h:panelGroup rendered="#{identity.hasRole(msg.permiso_registrar_usuario_administrador)}">
+					<div style="width: 20px;" align="center">
+						<h:outputText value="|"  /> 
+					</div>
+			</h:panelGroup>
+			
+			<rich:dropDownMenu rendered="#{identity.hasRole(msg.permiso_autorizar_administrador)}">
+				<f:facet name="label">
+					<h:panelGroup>						
+							<s:link id="menuAdminPlantilla" view="/administracion/administrarPlantillaRol.xhtml" value="#{msg.menu_admin_user_plantilla_roles}" styleClass="linkMenu" propagation="none"/>				
+					</h:panelGroup>
+				</f:facet>
+			</rich:dropDownMenu>
+			
+			<h:panelGroup rendered="#{identity.hasRole(msg.permiso_registrar_usuario_administrador)}">
+					<div style="width: 20px;" align="center">
+						<h:outputText value="|"  /> 
+					</div>
+			</h:panelGroup>
+			
+			<rich:dropDownMenu rendered="#{identity.hasRole(msg.permiso_registrar_usuario_administrador)}">
+				<f:facet name="label">
+					<h:panelGroup>						
+							<h:outputLink id="menuAdminPerm" value="#{authenticator.guiAuthorizationURL}" styleClass="linkMenu" propagation="none">
+								<h:outputText value="#{msg.admin_clave_titulo_administrarPermisos}"/>				
+							</h:outputLink>
+					</h:panelGroup>
+				</f:facet>
+			</rich:dropDownMenu>
+			
+			<h:panelGroup rendered="#{identity.hasRole(msg.permiso_registrar_usuario_administrador)}">
+					<div style="width: 20px;" align="center">
+						<h:outputText value="|"  /> 
+					</div>
+			</h:panelGroup>
+			
+			<rich:dropDownMenu rendered="#{identity.hasRole(msg.permiso_administrar_autenticador)}">
+				<f:facet name="label">
+					<h:panelGroup>						
+							<s:link id="menuAdminAutenticador" view="/administracion/administrarAutenticador.xhtml" value="#{msg.menu_autenticador}" styleClass="linkMenu" propagation="none"/>				
+					</h:panelGroup>
+				</f:facet>
+			</rich:dropDownMenu>
+
+		</h:panelGrid>
+
+		<rich:hotKey key="ctrl+m"
+			handler="RichFaces.Menu.Layers.LMPopUpL('#{rich:clientId('ctlItemConsultarHistoria')}', 'show');"
+			disableInInput="true" />
+
+	</h:form>
+	</f:view>
+</ui:composition>

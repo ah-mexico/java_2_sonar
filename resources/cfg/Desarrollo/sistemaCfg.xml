@@ -1,0 +1,21 @@
+<cfg>
+  <item name="smtpServer" description="Smtp Server" value="srvvdirsync.colsanitas.com" />
+  <item name="smtpRequiresAuthorization" description="smtpRequiresAuthorization" value="true" />
+  <item name="smtpPort" description="smtpPortNumber" value="25" />
+  <item name="smtpUser" description="Parametro generado automaticamente" value="loginadminfrom" />
+  <item name="smtpPassword" description="Password de smtp" value="3s72gpCk9NJTW+00gHtIPg==" />
+  <item name="defaultFromAddress" description="Parametro generado automaticamente" value="default@default" />
+  <item name="defaultFromName" description="Parametro generado automaticamente" value="Default" />
+  <item name="wsdlAuthentication" description="URL del servicio de autenticación" value="http://anteo.colsanitas.com:8580/Gaudi-Services/Authentication?WSDL" />
+  <item name="wsdlAuthorization" description="URL del servicio de autorización" value="http://poseidon.colsanitas.com:8888/Authorization/Authorization?wsdl" />
+  <item name="applicationName" description="Nombre de la aplicación" value="LoginAdmin" />
+  <item name="ssoURLLogout" description="Dirección de loggout del single sign on" value="http://osiapppre02.colsanitas.com/sso/logout" />
+  <item name="urlPublicAdminPwd" description="URL publica para administrar password" value="/public/administrarContrasena.seam" />
+  <item name="urlConsultarUser" description="URL consultar usuarios" value="/administracion/consultarUsuario.seam" />
+  <item name="versionLoginAdmin" description="Almacena el número de la versión" value="V. 2.0.0.b1" />
+  <item name="noPermissionURL" description="URL a donde se redirecciona cuando el usuario no tiene permisos de acceso a la aplicación" value="http://srvvdappjb501.colsanitas.com:8680/LoginAdmin/public/sinAutorizacion.seam?app=LoginAdmin" />
+  <item name="urlRequiereCambiarPassword" description="Parametro generado automaticamente" value="http://localhost:8180/LoginAdmin/public/administrarContrasena.seam?obliga=true&amp;urlAplicacion=%s&amp;userName=%s" />
+  <item name="CHANGE_PASSWORD_REQUIRED_CODE" description="Parametro generado automaticamente" value="5" />
+  <item name="urlGUIAuthorization" description="URL de GUIAuthorization" value="http://poseidon.colsanitas.com:8888/GUIAuthorization" />
+  <item name="urlAdminPlantillaRole" description="URL funcionalidad adminstrar plantilla roles" value="/administracion/administrarPlantillaRol.seam" />
+</cfg>

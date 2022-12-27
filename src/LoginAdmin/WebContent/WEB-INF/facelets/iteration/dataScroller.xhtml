@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich">
+	
+	
+	<c:set var="ajaxSingle" value="#{not empty ajaxSingle ? ajaxSingle : true}"/>
+	<c:set var="reRender" value="#{id}, #{not empty reRender ? reRender : id}"/>
+	<c:set var="style" value="#{style}, #{not empty style ? style : ''}"/>
+<h:panelGrid columns="7" id="#{id}" styleClass="scroller" style="#{style}" border="0" cellpadding="1" cellspacing="0">
+	
+			<a:commandButton 
+				ajaxSingle="#{ajaxSingle}" reRender="#{reRender}"
+				styleClass="botonIzqExaLabCompuesto"
+				disabled="#{binding.isPreviousDisabled()}"
+				action="#{binding.showFirst()}" />
+		
+		
+			<a:commandButton 
+				ajaxSingle="#{ajaxSingle}" reRender="#{reRender}"
+				styleClass="botonIzqExaLabSencillo" action="#{binding.showPrevious()}"
+				disabled="#{binding.isPreviousDisabled()}" />
+		
+		<div class="scrollerSeparator" />
+		
+		<a:repeat value="#{binding.paginas}" var="pagina">
+			<c:set var="esPaginaActual" value="#{pagina eq binding.paginaActual}"/> 
+			
+			
+			
+			<div class="scrollerCell">
+				<s:div styleClass="vinculoScrollExamLabCont">
+				<a:commandLink  rendered="#{not esPaginaActual}" styleClass="vinculoDos"
+					ajaxSingle="#{ajaxSingle}" reRender="#{reRender}"
+					action="#{binding.showPage(pagina)}">
+					<h:outputText value="#{pagina}"  styleClass="sinvinculoScrollExamLab" />
+				</a:commandLink>
+				
+				<h:outputText rendered="#{esPaginaActual}"  value="#{pagina}" styleClass="vinculoScrollExamLab"/>
+				</s:div>
+			</div>
+			<s:div rendered="#{pagina lt binding.paginas.size()}" styleClass="scrollerSeparatorDos" />
+		</a:repeat>
+		
+		<div class="scrollerSeparator" />
+		
+			<a:commandButton 
+				ajaxSingle="#{ajaxSingle}" reRender="#{reRender}"
+				styleClass="botonDerExaLabSencillo"
+				action="#{binding.showNext()}" disabled="#{binding.isNextDisabled()}" />
+		
+		
+			<a:commandButton 
+				ajaxSingle="#{ajaxSingle}" reRender="#{reRender}"
+				action="#{binding.showLast()}"
+				disabled="#{binding.isNextDisabled()}"
+				styleClass="botonDerExaLabCompuesto"/>
+		
+	
+	</h:panelGrid>
+	
+	
+
+	
+	
+	
+	
+
+</ui:composition>

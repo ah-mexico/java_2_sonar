@@ -1,0 +1,19 @@
+<ui:composition xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+		
+		<a:status for="#{idRegion}"
+				onstart="Richfaces.showModalPanel('modal_#{idRegion}',{width:40, top:200})"
+				onstop="Richfaces.hideModalPanel('modal_#{idRegion}')">
+			</a:status>
+
+			<rich:modalPanel id="modal_#{idRegion}" minHeight="40" minWidth="40" height="40" width="40" zindex="100" autosized="true">
+				<h:graphicImage value="/images/loading.gif" />
+			</rich:modalPanel>
+			
+			
+</ui:composition>

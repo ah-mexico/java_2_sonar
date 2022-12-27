@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j">
+
+<head>
+<title>LoginAdmin</title>
+<link
+	href="#{facesContext.externalContext.requestContextPath}/stylesheet/estilos.css"
+	rel="stylesheet" type="text/css" />
+<link href="../stylesheet/estilos.css" rel="stylesheet" type="text/css" />
+<link rel="shortcut icon"
+	href="#{facesContext.externalContext.requestContextPath}/images/liferay.png" />
+<script
+	src="#{facesContext.externalContext.requestContextPath}/js/sessionTimeOut.js"
+	type="text/javascript"></script>
+</head>
+<body>
+	<div id="ajuste">
+		<div id="contenedor">
+			<div id="degradePagina" align="center">
+				<table width="890" border="0" align="center" cellpadding="0"
+					cellspacing="0">
+					<tr>
+						<td>
+							<div class="cabezote">
+								<div align="left" class="linkLogo">
+									<h:panelGrid border="0" columns="8" cellpadding="2"
+										cellspacing="2">
+										<h:panelGroup>
+											<div style="width: 15px;" align="center" />
+										</h:panelGroup>
+										<h:panelGroup>
+											<h:outputText value="Bienvenido(a), #{identity.username}"
+												styleClass="linkUno" />
+										</h:panelGroup>
+										<h:panelGroup rendered="#{not empty identity.username}">
+											<div style="width: 10px;" align="center">
+												<h:outputText value="|" styleClass="linkUno" />
+											</div>
+										</h:panelGroup>
+										<h:outputLink value="#{authenticator.logoutURL}">
+											<h:outputText value="#{msg.template_cerrar_sesion}"
+												styleClass="linkUno" />
+										</h:outputLink>
+										<h:panelGroup>
+											<div style="width: 62px;" align="center" />
+										</h:panelGroup>
+										<h:panelGroup>
+											<h:panelGroup rendered="false">
+												<a href="#{msg.link_portal_prest}" class="linkTres"><h:outputText value="#{msg.templ_portalPresta}"/></a>
+											</h:panelGroup>
+										</h:panelGroup>
+										<h:panelGroup>
+											<div style="width: 211px;" align="center" />
+										</h:panelGroup>
+										<h:panelGroup rendered="#{not empty identity.username}">
+											<h:outputText value="#{authenticator.version}"
+												styleClass="textogeneral4" />
+										</h:panelGroup>
+									</h:panelGrid>
+								</div>
+								<div align="right" class="usuarioContenedor">
+									<!-- aqui espacio usuario-->
+								</div>
+								<div class="usuarioMenu">
+									<ui:include src="menu.xhtml" />
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<table width="890" border="0" cellspacing="0" cellpadding="0"
+								class="tablaGenerica">
+								<tr>
+									<td width="20" class="bkgMenu">&nbsp;</td>
+									<td width="850" class="fondoContenedor">
+										<div class="contenido">
+											<table width="100%" border="0" cellspacing="0"
+												cellpadding="0">
+												<tr>
+													<td><ui:insert name="contenido" /></td>
+												</tr>
+											</table>
+										</div>
+									</td>
+									<td width="20" class="bkgMenu">&nbsp;</td>
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<div class="piePagina" />
+			</div>
+		</div>
+	</div>
+	<div id="cargadorRegion"
+		style="display: none; height: 100%; width: 100%; z-index: 5000; position: absolute; top: 0; left: 0;">
+		<div
+			style="height: 10px; width: 10px; position: absolute; left: 50%; top: 50%">
+			<h:graphicImage value="/images/loading.gif" />
+		</div>
+	</div>
+</body>
+</html>

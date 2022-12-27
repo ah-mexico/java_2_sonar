@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Implementation-Title: LoginAdmin
+Implementation-Version: 1.0.0
+Class-Path: lib/log4j-1.2.14.jar 
+ lib/slf4j-api-1.5.0.jar 
+ lib/slf4j-log4j12-1.5.0.jar
+Created-By: yaaperez@colsanitas.com
+

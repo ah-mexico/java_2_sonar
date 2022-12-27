@@ -1,0 +1,19 @@
+<cfgList>
+	<cfg module="administracion" 
+		 source="/usr/deploy_java/gaudi/login_admin/administracion.xml" 
+		 description="Modulo de administracion"/>
+
+	<cfg module="gaudi" 
+		 source="/usr/deploy_java/gaudi/login_admin/sistemaCfg.xml" 
+		 description="Modulo de utilidades generales de Gaudi"/>
+
+
+	<cfg module="guiseg" 
+		 source="/usr/deploy_java/gaudi/login_admin/guisegCfg.xml" 
+		 description="Modulo de seguridad de GUIAuthorization"/>
+		 
+	<cfg module="sistema" 
+		 source="/usr/deploy_java/gaudi/login_admin/sistemaCfg.xml" 
+		 description="Modulo de utilidades generales de Gaudi"/>
+		 
+</cfgList>

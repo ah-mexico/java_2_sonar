@@ -1,0 +1,84 @@
+<rich:modalPanel id="pnlSelListApliRoles" width="600" height="150" autosized="true" resizeable="false" moveable="true"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:his="http://colsanitas.com/jsf/facelets">
+
+	<f:facet name="header">
+		<h:panelGroup>
+			<div align="left">
+				<h:outputText value="#{msg.plantilla_roles_seleccione_rol}"
+					styleClass="subSec"></h:outputText>
+			</div>
+		</h:panelGroup>
+	</f:facet>
+	<!-- <a:form id="formAgrApliRole">
+			<a:region renderRegionOnly="false" id="regionformAgrApliRole">
+				<his:progressBar id="prformAgrApliRole" idRegion="regionformAgrApliRole" />-->
+	<div class="contenido" style="height: 100%" align="center">
+		<h:panelGrid columns="1" width="97%" id="panelContenidoRes"
+			cellpadding="0" cellspacing="0">
+			<h:panelGroup>
+				<div style="height: 20px;" />
+			</h:panelGroup>
+			<h:panelGroup>
+				<div style="width: 98%; margin-left: 15px;" align="left">
+					<rich:message for="formAgrApliRole" var="messages"
+						errorClass="txtUnoError" warnClass="txtUnoAlerta"
+						infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+				</div>
+			</h:panelGroup>
+			<h:panelGroup>
+				<rich:dataTable cellspacing="1" cellpadding="1" border="0"
+					width="100%" id="listRoles"
+					styleClass="BordeTablasDos centrarTexto" rowClasses="impar,par"
+					rows="#{msg.rowsPerPageGestionRole}" rowKeyVar="seleccion"
+					value="#{administrarAplicacionesAdministradorWeb.listRole}"
+					var="dataItemRole" headerClass="dr-table-header rich-table-header"
+					reRender="scrollDataTableLisRoles">
+					<rich:column sortBy="#{dataItemRole.name}">
+						<f:facet name="header">
+							<h:outputText value="#{msg.plantilla_roles_nombre_rol}" />
+						</f:facet>
+						<div align="left">
+							<a:commandLink value="#{dataItemRole.name}"
+								action="#{administrarAplicacionesAdministradorWeb.seleccionarRol(dataItemRole)}"
+								oncomplete="actualizarDatosBusqRolApli();" />
+						</div>
+					</rich:column>
+					<rich:column sortBy="#{dataItemRole.description}">
+						<f:facet name="header">
+							<h:outputText value="#{msg.plantilla_roles_descripcion_rol}" />
+						</f:facet>
+						<div align="left">
+							<a:commandLink value="#{dataItemRole.description}"
+								action="#{administrarAplicacionesAdministradorWeb.seleccionarRol(dataItemRole)}"
+								oncomplete="actualizarDatosBusqRolApli();" />
+						</div>
+					</rich:column>
+				</rich:dataTable>
+				<br />
+				<rich:datascroller id="scrollDataTableLisRoles" for="listRoles"
+					align="center" renderIfSinglePage="false" />
+				<br />
+			</h:panelGroup>
+			<h:panelGroup>
+				<div align="right">
+					<a:commandButton styleClass="boton" value="#{msg.cancelar}"
+						ajaxSingle="true" immediate="true"
+						oncomplete="#{rich:component('pnlSelListApliRoles')}.hide();" />
+				</div>
+			</h:panelGroup>
+			<rich:hotKey id="escSelApliRole" key="Esc"
+				handler="#{rich:component('pnlSelListApliRoles')}.hide();" />
+			<br />
+		</h:panelGrid>
+	</div>
+	<!-- </a:region>		
+		</a:form> -->
+	</rich:modalPanel>

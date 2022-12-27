@@ -1,0 +1,448 @@
+<ui:composition xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:his="http://colsanitas.com/jsf/facelets"
+	template="compositeInputTemplate.xhtml">
+
+
+	<ui:define name="input">
+
+		<script type="text/javascript" language="JavaScript">
+	<!--  
+		var rankingTemp = true;
+
+		function isSpecialKey( campo, e , charSpecial, tipo, tipoDatCod ) {
+			if( !validarCopiaCaracterFinder(campo, charSpecial, tipo, tipoDatCod)){
+			 var key;     
+		     if(window.event){
+		          key = window.event.keyCode; //IE
+		     }else{
+		          key = e.which; //firefox     
+		     }
+		     if( campo.value == null || (campo.value != null && campo.value != null && campo.value.length == 0) ) {
+			     return false;
+			   } else {
+		     	return (key == 13);
+			   }
+			}else{
+			 return false;
+			}
+		}
+		
+		function checkResponse( labelCtrl, msgCtrl ) {
+			var result = false;
+			if( labelCtrl.value == "" ) {
+				msgCtrl.innerHTML = "No se encontraron coincidencias";
+				labelCtrl.focus();
+				result = false;
+			} else {
+				msgCtrl.innerHTML = "";
+				labelCtrl.focus();
+				result = true;
+			}
+			labelCtrl.focus();
+			return result;
+		}
+        
+		 function onSelectSuggestion(suggest, prop, output){
+				output.value = suggest.getSelectedItems()[0][prop];
+        suggest.showing = true;
+        return false;
+	   }
+        
+        
+        function checkEmptyField( ctrl, fieldToEmpty ) {
+        	if( ctrl.value == "" ) {
+        		fieldToEmpty.value = "";
+        	}
+        }
+
+        function showSuggestion(input,min, suggest, idMsg){
+        	var minChar = eval(min - 1);
+            if(input.value != null && input.value.length>=min){
+        			suggest.callSuggestion(true);
+        			if( idMsg != null ) {
+   	        	  idMsg.innerHTML = "";    
+   	          }
+            } else {
+            	alert("Debe ingresar m\xE1s de " + minChar + " caracteres para realizar la b\xFAsqueda");
+            }
+        }
+
+	      function showSuggestionIfEnter(campo, event,input,min, suggest,ranking, charSpecial, tipo, tipoDatCod, idMsg){
+		      var minChar = eval(min - 1);
+		      var inputAux;
+		      var key;     
+			    if(window.event){
+			    	key = window.event.keyCode; //IE
+			    }else{
+			    	key = event.which; //firefox     
+			    }
+	        if( !validarCopiaCaracterFinder(campo, charSpecial, tipo, tipoDatCod)) {
+	        	inputAux = input.value; 
+	        	inputAux = trimFinder(inputAux);
+	   			if( inputAux != null && inputAux.length >= min && key == 13) {
+	   				if(!suggest.showing && !ranking.showing) {
+	   						suggest.callSuggestion(true);
+	   						if( idMsg != null ) {
+	   	        	  idMsg.innerHTML = "";    
+	   	          }
+	   						return false;
+	   				} else {
+	   					suggest.showing = false;
+	   					return true;
+	   				}
+	   			} else if( inputAux != null && inputAux.length <= min && key == 13) {
+		   			alert("Debe ingresar m\xE1s de " + minChar + " caracteres para realizar la b\xFAsqueda");
+		   		}
+	   			return true;
+	   		} else {
+	   			return false;
+	   		}
+	   	}
+
+     function showRanking(event,label,code,isRanking,ranking) {
+   		if(label.value == ''){
+   			code.value = '';
+   			rankingTemp = true;
+   		} else if(isRanking) {
+   			if(label.value == '.' && rankingTemp) {
+   				ranking.callSuggestion(true);
+   				rankingTemp = false;
+   			}
+   		}
+   	}
+  	
+    function checkMaxLength(obj, mlength){
+			if (mlength > 0)
+				if (obj.value != null && obj.value.length>mlength)
+					obj.value=obj.value.substring(0,mlength)
+		}
+
+    function validarCaracterFinder( evt, charSpecial, tipo, tipoDatCod ) {
+      var key;
+			var valor;
+			var regex;
+			var valorAux;
+			if( tipo.toUpperCase() == 'CODIGO' ) {
+				if( tipoDatCod.toUpperCase() == 'NUMERICO' ){
+					regex  =  new RegExp( "[0-9]" );
+				} else {
+					regex  =  new RegExp("[A-Za-z0-9.áéíóúÁÉÍÓÚñÑ"+charSpecial+"-]");
+				}
+			} else {
+				regex  =  new RegExp("[A-Za-z0-9áéíóúÁÉÍÓÚñÑ+.#_,()/\\\\@!$%&=¿?¡!'*{}[\\]|:"+charSpecial+"-]");
+			}
+
+			if( window.event ) {
+				key = window.event.keyCode; //IE
+				valor = String.fromCharCode( key );
+				if( key != 32 ){
+					if( !regex.test(valor) ) {
+						evt.returnValue = false;
+					}
+				}
+			} else {
+				key = evt.which; //firefox
+				valor = String.fromCharCode( key );
+				if( key != 8 ) {
+					if( key != 0 ) {
+						if( valor != null && trimFinder(valor).length > 0 ){
+							if( !(evt.ctrlKey == true && ((key == 118 || key == 86) || (key == 99 || key == 67) || (key == 120 || key == 88) ) ) ) {
+								if( !regex.test(valor) ) {
+									evt.returnValue = false;
+									evt.preventDefault();
+								}
+							}
+						}
+					}	
+				}
+			}
+		}
+	
+    function validarCopiaCaracterFinder( campo, charSpecial, tipo, tipoDatCod ) {
+    	if( tipo.toUpperCase() == 'CODIGO' ) {
+				if( tipoDatCod.toUpperCase() == 'NUMERICO' ){
+					regex  =  new RegExp( "[0-9]" );
+				} else {
+					regex  =  new RegExp("[A-Za-z0-9.áéíóúÁÉÍÓÚñÑ"+charSpecial+"-]");
+				}
+			} else {
+				regex  =  new RegExp("[A-Za-z0-9áéíóúÁÉÍÓÚñÑ+.#_,()/\\\\@!$%&=¿?¡!'*{}[\\]|:"+charSpecial+"-]");
+			}
+		
+	    var tieneCaracteresEspeciales=false;
+			if( campo != null && campo.value != null ) {
+				for (i=0; i != campo.value.length; i++) {
+					if( campo.value.charAt(i) != ' ' ) {
+						if( trimFinder(campo.value).charAt(i).length > 0 ) {
+							if( !regex.test(campo.value.charAt(i)) ) {
+								campo.focus();
+								campo.value = "";
+								tieneCaracteresEspeciales=true;
+								break;
+							}
+						}
+					}
+				}
+			}
+			if(tieneCaracteresEspeciales){
+				if( tipo == 'CODIGO' && tipoDatCod.toUpperCase() == 'NUMERICO' ) {
+					alert('El campo es num\xE9rico');
+				} else { 
+					alert('El campo no permite caracteres especiales');
+				}
+			}
+		return tieneCaracteresEspeciales;
+	}
+
+    function trimFinder(str) {
+        return str.replace(/^\s+|\s+$/g,"");
+    }
+	--> 	
+	</script>
+
+
+		<c:set var="tableIndex"
+			value="#{not empty tableIndex ? tableIndex : '0'}" />
+		<c:set var="id_label" value="#{id}_label" />
+		<c:set var="id_code" value="#{id}_code" />
+		<c:set var="id_suggestion" value="#{id}_suggestion" />
+		<c:set var="jsFindByCode" value="#{id}_findByCode_#{tableIndex}" />
+		<c:set var="id_msg" value="#{id}_msg" />
+		<c:set var="id_suggestion_Ranking" value="#{id}_suggestion_Ranking" />
+		
+		<c:if test="#{empty caracterEspecialValue}">
+			<c:set var="caracterEspecialValue" value="" />
+		</c:if>
+		<c:if test="#{empty caracterEspecialLabel}">
+			<c:set var="caracterEspecialLabel" value="" />
+		</c:if>
+
+		<c:if test="#{!empty sqlRanking}">
+			<c:set var="sqlRankingQuery" value="#{bean['rankingSql']}" />
+		</c:if>
+		<c:if test="#{empty sqlRanking}">
+			<c:set var="sqlRankingQuery" value="null" />
+		</c:if>
+		<c:if test="#{empty ranking}">
+			<c:set var="ranking" value="false" />
+		</c:if>
+		<c:if test="#{empty showValueBox}">
+			<c:set var="showValueBox" value="false" />
+		</c:if>
+		<c:if test="#{empty valueSize}">
+			<c:set var="valueSize" value="5" />
+		</c:if>
+		<c:if test="#{empty labelSize}">
+			<c:set var="labelSize" value="25" />
+		</c:if>
+		<c:if test="#{empty onChoice}">
+			<c:set var="onChoice" value="" />
+		</c:if>
+		<c:if test="#{empty fetchValue}">
+			<c:set var="fetchValue" value="#{bean['fetchValue']}" />
+		</c:if>
+		<c:if test="#{empty fetchLabel}">
+			<c:set var="fetchLabel" value="#{bean['fetchLabel']}" />
+		</c:if>
+		<c:if test="#{empty onLabel}">
+			<c:set var="onLabel" value="findByText" />
+		</c:if>
+		<c:if test="#{empty onValue}">
+			<c:set var="onValue" value="findByCode" />
+		</c:if>
+		<c:if test="#{empty required}">
+			<c:set var="required" value="false" />
+		</c:if>
+		<c:if test="#{empty rendered}">
+			<c:set var="rendered" value="true" />
+		</c:if>
+		<c:if test="#{empty valueMaxlength}">
+			<c:set var="valueMaxlength" value="5000" />
+		</c:if>
+		<c:if test="#{empty labelMaxlength}">
+			<c:set var="labelMaxlength" value="5000" />
+		</c:if>
+		<c:if test="#{empty minChars}">
+			<c:set var="minChars" value="3" />
+		</c:if>
+		<c:if test="#{empty width}">
+			<c:set var="width"
+				value="#{empty rows? labelSize*6 : labelSize*6*rows}" />
+		</c:if>
+		<c:if test="#{empty height}">
+			<c:set var="height" value="100" />
+		</c:if>
+		<c:if test="#{empty refreshObjectOnLabel}">
+			<c:set var="refreshObjectOnLabel" value="false" />
+		</c:if>
+		<c:if test="#{empty rankingWeb}">
+			<c:set var="rankingWeb" value="#{genericRankingWeb}" />
+		</c:if>
+		<c:if test="#{empty onBeforeChoice}">
+			<c:set var="onBeforeChoice" value="" />
+		</c:if>
+		<c:if test="#{empty onAfterSelect}">
+			<c:set var="onAfterSelect" value="" />
+		</c:if>
+		
+		<c:set var="onSelect"
+			value="onSelectSuggestion(#{rich:component(id_suggestion)},'#{fetchValue}', #{rich:element(id_code)});" />
+		<c:if test="#{refreshObjectOnLabel}">
+			<c:set var="onSelect"
+				value="#{onSelect} onLabel_#{jsFindByCode}(#{rich:element(id_code)}.value); " />
+		</c:if>
+		<c:if test="#{not refreshObjectOnLabel}">
+			<c:set var="onSelect" value="#{onSelect} #{onChoice} " />
+		</c:if>
+
+		<c:set var="onSelectRanking"
+			value="onSelectSuggestion(#{rich:component(id_suggestion_Ranking)},'#{fetchValue}', #{rich:element(id_code)});" />
+		<c:if test="#{refreshObjectOnLabel}">
+			<c:set var="onSelectRanking"
+				value="#{onSelectRanking} onLabel_#{jsFindByCode}(#{rich:element(id_code)}.value); " />
+		</c:if>
+		<c:if test="#{not refreshObjectOnLabel}">
+			<c:set var="onSelectRanking" value="#{onSelectRanking} #{onChoice} " />
+		</c:if>
+		<c:if test="#{empty onkeyup}">
+			<c:if test="#{!(empty labelMaxlength)}">
+				<c:set var="onkeyup" value="checkMaxLength(this, #{labelMaxlength})" />
+			</c:if>
+		</c:if>
+		
+		<div style="position:absolute; left:50%;">
+			<a:status for="region#{id}">
+				<f:facet name="start">
+						<h:graphicImage
+						 value="#{facesContext.externalContext.request.scheme}://#{facesContext.externalContext.request.serverName}:#{facesContext.externalContext.request.serverPort}#{facesContext.externalContext.requestContextPath}/images/loadingFinder.gif" />
+				</f:facet>
+			</a:status>
+		</div>
+		
+		<a:region rendered="#{rendered}" id="region#{id}" renderRegionOnly="false">
+			
+
+			<h:panelGrid id="#{id}" columns="1" border="0" width="16%"
+				cellpadding="0" cellspacing="0">
+				<h:panelGroup>
+				
+					<h:panelGrid columns="4" border="0" width="16%" cellpadding="1"
+						cellspacing="0">
+						<h:panelGroup>
+							<c:if test="#{showValueBox}">
+								<h:inputText value="#{value[fetchValue]}" size="#{valueSize}"
+									id="#{id_code}"
+									onkeypress="validarCaracterFinder(event,'#{caracterEspecialValue}', 'CODIGO', '#{tipoDatCod}');if( isSpecialKey(this, event,'#{caracterEspecialValue}', 'CODIGO', '#{tipoDatCod}') ){ #{jsFindByCode}(this.value); return false;}"
+									disabled="#{disabled}" required="#{required}"
+									styleClass="cajaSimple" maxlength="#{valueMaxlength}"
+									style="#{valueStyle}"
+									onkeyup="checkEmptyField(this, #{rich:element(id_label)});"
+									onblur="validarCopiaCaracterFinder(this, '#{caracterEspecialValue}', 'CODIGO', '#{tipoDatCod}');"
+									tabindex="#{tabindex_codigo}" immediate="true">
+									<ui:insert />
+								</h:inputText>
+							</c:if>
+							<c:if test="#{not showValueBox}">
+								<h:inputHidden value="#{value[fetchValue]}" id="#{id_code}" required="#{required}" />
+							</c:if>
+
+						</h:panelGroup>
+						<h:panelGroup>
+							<div style="width: 5%"></div>
+						</h:panelGroup>
+						<h:panelGroup>
+							<c:if test="#{empty rows}">
+								<h:inputText id="#{id_label}" value="#{value[fetchLabel]}"
+									size="#{labelSize}" disabled="#{disabled}"
+									styleClass="fondoInputBuscar" maxlength="#{labelMaxlength}"
+									style="#{labelStyle}"
+									onblur="validarCopiaCaracterFinder(this, '#{caracterEspecialLabel}', 'CODIGO', '#{tipoDatCod}');"
+									onkeypress="validarCaracterFinder(event,'#{caracterEspecialLabel}', 'CODIGO', '#{tipoDatCod}');return showSuggestionIfEnter(this,event,#{rich:element(id_label)},#{minChars},#{rich:component(id_suggestion)},#{rich:component(id_suggestion_Ranking)},'#{caracterEspecialLabel}', 'CODIGO', '#{tipoDatCod}', #{rich:element(id_msg)})"
+									onkeyup="showRanking(event,this,#{rich:element(id_code)},#{ranking},#{rich:component(id_suggestion_Ranking)});"/>
+							</c:if>
+							<c:if test="#{not empty rows}">
+								<h:inputTextarea id="#{id_label}" value="#{value[fetchLabel]}"
+									cols="#{labelSize}" disabled="#{not empty disabilitarDesc ? true : false}"
+									maxlength="#{labelMaxlength}" styleClass="fondoInputBuscarDos"
+									rows="#{rows}" style="#{labelStyle}"
+									onkeypress="validarCaracterFinder(event,'#{caracterEspecialLabel}', 'DESCRIPCION', '#{tipoDatCod}');return showSuggestionIfEnter(this,event,#{rich:element(id_label)},#{minChars},#{rich:component(id_suggestion)},#{rich:component(id_suggestion_Ranking)},'#{caracterEspecialLabel}', 'DESCRIPCION', '#{tipoDatCod}', #{rich:element(id_msg)})"
+									onkeyup="#{onkeyup}"
+									onblur="validarCopiaCaracterFinder(this, '#{caracterEspecialLabel}', 'DESCRIPCION', '#{tipoDatCod}');"
+									tabindex="#{tabindex_descripcion}"/>
+								<!-- <script>new SizeLimit("#{rich:clientId(id_label)}", #{labelMaxlength});</script> -->
+							</c:if>
+
+							<rich:suggestionbox height="#{height}" id="#{id_suggestion}"
+								for="#{id_label}" suggestionAction="#{bean.findByText}"
+								ignoreDupResponses="true" eventsQueue="finder"
+								nothingLabel="No se encontraron coincidencias" var="suggest"
+								fetchValue="#{suggest[fetchLabel]}" usingSuggestObjects="true"
+								onselect="#{onSelect}" minChars="5000" ajaxSingle="true"
+								width="#{width}" rowClasses="impar,par"
+								oncomplete="#{onBeforeChoice}">
+								<h:column>
+									<h:outputText value="#{suggest[fetchLabel]}" />
+								</h:column>
+							</rich:suggestionbox>
+
+							<rich:suggestionbox height="#{height}"
+								id="#{id_suggestion_Ranking}" for="#{id_label}"
+								suggestionAction="#{rankingWeb.findByRanking(value, sqlRankingQuery)}"
+								ignoreDupResponses="true" eventsQueue="finder"
+								nothingLabel="No se encontraron coincidencias Ranking"
+								var="suggest" fetchValue="#{suggest[fetchLabel]}"
+								usingSuggestObjects="true" onselect="#{onSelectRanking}"
+								minChars="5000" ajaxSingle="true" width="#{width}"
+								rowClasses="impar,par" oncomplete="#{onBeforeChoice}">
+								<h:column>
+									<h:outputText value="#{suggest[fetchLabel]}" />
+								</h:column>
+							</rich:suggestionbox>
+
+							<a:jsFunction name="#{jsFindByCode}"
+								action="#{bean.findByCode(value)}"
+								oncomplete="#{onBeforeChoice};if(checkResponse(#{rich:element(id_label)}, #{rich:element(id_msg)} ) ) { #{onChoice} }"
+								ajaxSingle="true"
+								reRender="#{id_label},#{id_code},#{id_suggestion}, #{reRender} ">
+								<a:actionparam name="id" assignTo="#{value[fetchValue]}" />
+							</a:jsFunction>
+							
+							<a:jsFunction name="onLabel_#{jsFindByCode}"
+								action="#{bean.findByCode(value)}"
+								immediate="true" ajaxSingle="true"
+								reRender="#{id_code},#{id_suggestion},#{reRender}"
+								oncomplete="#{onAfterSelect}">
+								<a:actionparam name="id" assignTo="#{value[fetchValue]}" />
+							</a:jsFunction>
+
+						</h:panelGroup>
+						<h:panelGroup rendered="#{empty disabilitarDesc ? true : false}">
+							<a:commandButton disabled="#{disabled}" id="#{id}_btnbuscar"
+								onclick="showSuggestion(#{rich:element(id_label)},#{minChars},#{rich:component(id_suggestion)}, #{rich:element(id_msg)})"
+								styleClass="botonBuscarFinder" ajaxSingle="true">
+								<rich:toolTip for="#{id}_btnbuscar" styleClass="ToolTipUno"
+									direction="top-left" horizontalOffset="4" verticalOffset="4"
+									followMouse="true">
+									<h:outputText value="#{messages.buscar}" escape="false" />
+								</rich:toolTip>
+							</a:commandButton>
+						</h:panelGroup>
+					</h:panelGrid>
+
+				</h:panelGroup>
+				<h:panelGroup>
+					<h:outputText id="#{id_msg}" styleClass="message" />
+					<rich:message for="#{id_code}" errorClass="message" warnClass="message" tooltip="true" showDetail="false" showSummary="true"/>
+				</h:panelGroup>
+			</h:panelGrid>
+		</a:region>
+
+	</ui:define>
+
+</ui:composition>

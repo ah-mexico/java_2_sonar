@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+   
+   <local-tx-datasource>
+      <jndi-name>LoginAdminDatasource</jndi-name>
+      <use-java-context>false</use-java-context>
+      <connection-url>jdbc:oracle:thin:@srvvdesabd-scan:1521/dtsbd07</connection-url>
+      <driver-class>oracle.jdbc.OracleDriver</driver-class>
+      <user-name>usbd07</user-name>
+      <password>Desarrollo2019LA</password>
+   </local-tx-datasource>
+    
+</datasources>

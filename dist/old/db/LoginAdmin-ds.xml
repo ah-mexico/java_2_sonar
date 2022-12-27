@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<datasources>
+   
+   <local-tx-datasource>
+      <jndi-name>LoginAdminDatasource</jndi-name>
+      <use-java-context>true</use-java-context>
+      <connection-url>jdbc:oracle:thin:@muisca.colsanitas.com:1521:dsbd10</connection-url>
+      <driver-class>oracle.jdbc.OracleDriver</driver-class>
+      <user-name>usuauth</user-name>
+      <password>usuauth</password>
+   </local-tx-datasource>
+    
+</datasources>

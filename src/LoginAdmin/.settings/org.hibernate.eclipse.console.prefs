@@ -1,0 +1,4 @@
+#Mon Aug 22 10:57:25 COT 2011
+default.configuration=LoginAdmin-ejb
+eclipse.preferences.version=1
+hibernate3.enabled=true

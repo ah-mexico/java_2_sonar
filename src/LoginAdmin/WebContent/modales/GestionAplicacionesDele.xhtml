@@ -1,0 +1,196 @@
+<rich:modalPanel id="pnlGestionApliDele" width="350" height="320"
+	autosized="true" resizeable="false" moveable="true"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:his="http://colsanitas.com/jsf/facelets">
+
+
+	<f:facet name="header">
+		<h:panelGroup>
+			<div align="left">
+				<h:outputText value="#{msg.admin_apli_dele_titulo}"
+					styleClass="subSec"></h:outputText>
+			</div>
+		</h:panelGroup>
+	</f:facet>
+	<f:facet name="controls">
+		<h:panelGroup>
+			<h:graphicImage value="/images/close.png" styleClass="hidelink"
+				id="hidelink" onclick="cerrarModGesApliRolDele()" />
+		</h:panelGroup>
+	</f:facet>
+	<a:form id="formGesApliDele">
+		<a:region renderRegionOnly="false" id="regionformGesApliDele">
+			<a:jsFunction name="guardarPlantillaRole"
+				action="#{administrarAplicacionesAdministradorWeb.guardarAplicacionesRoles('DELEGADO')}"
+				reRender="sessionPanelesApliRole" />
+			<a:jsFunction name="refresAdminRoleDele"
+				reRender="pgApliRoleUserDele"
+				oncomplete="#{rich:component('pnlGestionApliDele')}.hide();"
+				ajaxSingle="true" />
+			<a:jsFunction name="cerrarModGesApliRolDele"
+				action="#{administrarAplicacionesAdministradorWeb.cancelarProceso}"
+				reRender="pgApliRoleUserDele"
+				oncomplete="#{rich:component('pnlGestionApliDele')}.hide();"
+				ajaxSingle="true" />
+			<his:progressBar id="prformGesApliDele"
+				idRegion="regionformGesApliDele" />
+			<div class="contenido" align="left"
+				style="height: 320px; overflow: auto;">
+				<h:panelGrid columns="1" width="100%" border=""
+					id="panelContenidoGesApliAdmin" cellpadding="0" cellspacing="0"
+					rendered="#{identity.hasRole(msg.permiso_autorizar_delegado)}">
+					<h:panelGroup>
+						<div style="height: 10px;" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<div style="width: 98%; margin-left: 15px;" align="left">
+							<rich:message for="formGesApliDele" var="messages"
+								errorClass="txtUnoError" warnClass="txtUnoAlerta"
+								infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+						</div>
+					</h:panelGroup>
+					<h:panelGroup>
+						<div style="height: 5px;" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<div class="subSec" style="width: 785px;">
+							<h:outputText value="#{msg.plantilla_roles_titulo_admin_role}" />
+						</div>
+					</h:panelGroup>
+					<h:panelGroup>
+						<div style="height: 5px;" />
+					</h:panelGroup>
+					<h:panelGroup id="pgMsgInfoAdminRolDele">
+						<div align="left">
+							<rich:message for="pgMsgInfoAdminRolDele" var="messages"
+								errorClass="txtUnoError" warnClass="txtUnoAlerta"
+								infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+						</div>
+					</h:panelGroup>
+					<h:panelGroup>
+						<div style="height: 10px;" />
+					</h:panelGroup>
+					<h:panelGroup id="pgApliRoleUserDele">
+						<a:region renderRegionOnly="false" id="regionRolesPlant">
+							<his:progressBar id="prRolesPlant" idRegion="regionRolesPlant" />
+							<div align="center">
+								<h:panelGrid columns="1" width="90%" border="0">
+									<h:panelGroup>
+										<rich:dataTable cellspacing="1" cellpadding="1" border="0"
+											width="100%" id="listRolesPlan"
+											styleClass="BordeTablasDos centrarTexto"
+											rowClasses="impar,par" rows="#{msg.rowsPerPageGestionRole}"
+											rowKeyVar="seleccion"
+											value="#{administrarAplicacionesAdministradorWeb.listRolePlantPrest}"
+											var="dataItemRolePlan"
+											headerClass="dr-table-header rich-table-header"
+											reRender="scrollDataTableLisRolesPlan">
+											<rich:column>
+												<f:facet name="header">
+													<h:selectBooleanCheckbox id="checkAll"
+														title="#{mas.plantilla_roles_check_sel_all}"
+														value="#{administrarAplicacionesAdministradorWeb.checkAll}"
+														disabled="#{empty administrarAplicacionesAdministradorWeb.listRolePlantPrest}">
+														<a:support event="onchange"
+															action="#{administrarAplicacionesAdministradorWeb.seleccionarTodosLisDele}"
+															reRender="listRolesPlan" ajaxSingle="true" />
+													</h:selectBooleanCheckbox>
+												</f:facet>
+												<h:selectBooleanCheckbox id="checkEntry"
+													value="#{dataItemRolePlan.selected}" disabled="false"
+													rendered="#{dataItemRolePlan.administradorDominio}"
+													immediate="true">
+													<a:support event="onchange" reRender="listRolesPlan"
+														ajaxSingle="true" />
+												</h:selectBooleanCheckbox>
+											</rich:column>
+											<rich:column sortBy="#{dataItemRolePlan.role.name}">
+												<f:facet name="header">
+													<h:outputText value="#{msg.plantilla_roles_role}" />
+												</f:facet>
+												<div align="left">
+													<h:outputText value="#{dataItemRolePlan.role.name}"
+														styleClass="textogeneral" />
+												</div>
+											</rich:column>
+											<rich:column sortBy="#{dataItemRolePlan.role.groupRole.name}">
+												<f:facet name="header">
+													<h:outputText value="#{msg.plantilla_roles_grupo_rol}" />
+												</f:facet>
+												<div align="left">
+													<h:outputText
+														value="#{dataItemRolePlan.role.groupRole.name}"
+														styleClass="textogeneral" />
+												</div>
+											</rich:column>
+											<rich:column sortBy="#{dataItemRolePlan.role.domain.name}">
+												<f:facet name="header">
+													<h:outputText value="#{msg.plantilla_roles_aplicacion}" />
+												</f:facet>
+												<div align="left">
+													<h:outputText value="#{dataItemRolePlan.role.domain.name}"
+														styleClass="textogeneral" />
+												</div>
+											</rich:column>
+										</rich:dataTable>
+										<br />
+										<rich:datascroller id="scrollDataTableLisRolesPlan"
+											for="listRolesPlan" align="center" renderIfSinglePage="false"
+											immediate="true" ajaxSingle="true" />
+										<br />
+									</h:panelGroup>
+									<h:panelGroup>
+										<div align="right">
+											<h:panelGrid columns="3" border="0">
+												<h:panelGroup>
+													<a:commandButton id="btnAgrRoles" value="#{msg.guardar}"
+														styleClass="boton"
+														action="#{administrarAplicacionesAdministradorWeb.guardarAplicacionesRoles('DELEGADO')}"
+														reRender="sessionPanelesApliRole"
+														oncomplete="if (#{facesContext.maximumSeverity==null}){refresAdminRoleDele();}"
+														disabled="#{empty administrarAplicacionesAdministradorWeb.listRolePlantPrest}" />
+													<rich:toolTip for="btnAgrRoles" styleClass="ToolTipUno"
+														direction="top-left" followMouse="true"
+														horizontalOffset="4">
+														<h:outputText
+															value="#{msg.admin_apli_admin_msg_guardar_role}"
+															escape="false" />
+													</rich:toolTip>
+												</h:panelGroup>
+												<h:panelGroup>
+													<div style="width: 10px" />
+												</h:panelGroup>
+												<h:panelGroup>
+													<a:commandButton id="btnCanRoles" value="#{msg.cancelar}"
+														styleClass="boton"
+														action="#{administrarAplicacionesAdministradorWeb.cancelarProceso}"
+														ajaxSingle="true" immediate="true"
+														oncomplete="refresAdminRoleDele();" />
+													<rich:toolTip for="btnCanRoles" styleClass="ToolTipUno"
+														direction="top-left" followMouse="true"
+														horizontalOffset="4">
+														<h:outputText value="#{msg.admin_apli_admin_msg_cancelar}"
+															escape="false" />
+													</rich:toolTip>
+												</h:panelGroup>
+											</h:panelGrid>
+										</div>
+									</h:panelGroup>
+								</h:panelGrid>
+							</div>
+						</a:region>
+					</h:panelGroup>
+				</h:panelGrid>
+			</div>
+			<rich:hotKey id="escGesApliRole" key="Esc"
+				handler="refresAdminRoleDele();" />
+		</a:region>
+	</a:form>
+</rich:modalPanel>

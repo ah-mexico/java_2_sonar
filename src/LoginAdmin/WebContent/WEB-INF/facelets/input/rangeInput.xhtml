@@ -1,0 +1,348 @@
+<ui:composition
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:his="http://colsanitas.com/jsf/facelets"
+	template="inputTemplate.xhtml">
+
+	<ui:define name="input">
+	   	<c:if test="#{empty rendered}">
+	    	<c:set var="rendered" value="true" />
+	   	</c:if>
+	   	<c:if test="#{empty maxInt}">
+	    	<c:set var="maxInt" value="-1" />
+	   	</c:if>
+	   	
+	   	<c:if test="#{empty maxDec}">
+	    	<c:set var="maxDec" value="-1" />
+	   	</c:if>
+	   	
+	   	<c:if test="#{empty maxlength}">
+	    	<c:set var="maxlength" value="5000" />
+		</c:if>
+	   	
+	   	<c:set var="idFrom" value="#{id}_from" />
+	   	<c:set var="idTo" value="#{id}_to" />
+	   	<c:set var="idTxt" value="#{id}_txt" />
+	   	
+		<a:region rendered="#{rendered}" id="#{id}">
+			<a:region rendered="#{type == 'numeric'}">
+				<table border="0" cellspacing="0" cellpadding="1">
+					<tr>
+						<td>
+							<h:inputText id="#{idFrom}" value="#{fromValue}" size="#{size}" styleClass="cajaSimple" required="#{required}" 
+								 readonly="#{readonly}" immediate="#{immediate}">
+								
+								<c:if test="#{!(empty accesskey)}">
+									<f:attribute name="accesskey" value="#{accesskey}" />
+								</c:if>
+								<c:if test="#{!(empty alt)}">
+									<f:attribute name="alt" value="#{alt}" />
+								</c:if>
+								<c:if test="#{!(empty binding)}">
+									<f:attribute name="binding" value="#{binding}" />
+								</c:if>
+								<c:if test="#{!(empty converter)}">
+									<f:attribute name="converter" value="#{converter}" />
+								</c:if>
+								<c:if test="#{!(empty dir)}">
+									<f:attribute name="dir" value="#{dir}" />
+								</c:if>
+								<c:if test="#{!(empty disabled)}">
+									<f:attribute name="disabled" value="#{disabled}" />
+								</c:if>
+								<c:if test="#{!(empty lang)}">
+									<f:attribute name="lang" value="#{lang}" />
+								</c:if>
+								<c:if test="#{!(empty onblur)}">
+									<f:attribute name="onblur" value="#{onblur}" />
+								</c:if>
+								<c:if test="#{!(empty onchange)}">
+									<f:attribute name="onchange" value="#{onchange}" />
+								</c:if>
+								<c:if test="#{!(empty onclick)}">
+									<f:attribute name="onclick" value="#{onclick}" />
+								</c:if>
+								<c:if test="#{!(empty ondblclick)}">
+									<f:attribute name="ondblclick" value="#{ondblclick}" />
+								</c:if>
+								<c:if test="#{!(empty onfocus)}">
+									<f:attribute name="onfocus" value="#{onfocus}" />
+								</c:if>
+								<c:if test="#{!(empty onkeydown)}">
+									<f:attribute name="onkeydown" value="#{onkeydown}" />
+								</c:if>
+								<c:if test="#{!(empty onkeypress)}">
+									<f:attribute name="onkeypress" value="#{onkeypress}" />
+								</c:if>
+								<c:if test="#{!(empty onkeyup)}">
+									<f:attribute name="onkeyup" value="#{onkeyup}" />
+								</c:if>
+								<c:if test="#{!(empty onmousedown)}">
+									<f:attribute name="onmousedown" value="#{onmousedown}" />
+								</c:if>
+								<c:if test="#{!(empty onmousemove)}">
+									<f:attribute name="onmousemove" value="#{onmousemove}" />
+								</c:if>
+								<c:if test="#{!(empty onmouseout)}">
+									<f:attribute name="onmouseout" value="#{onmouseout}" />
+								</c:if>
+								<c:if test="#{!(empty onmouseover)}">
+									<f:attribute name="onmouseover" value="#{onmouseover}" />
+								</c:if>
+								<c:if test="#{!(empty onmouseup)}">
+									<f:attribute name="onmouseup" value="#{onmouseup}" />
+								</c:if>
+								<c:if test="#{!(empty onselect)}">
+									<f:attribute name="onselect" value="#{onselect}" />
+								</c:if>
+								<c:if test="#{!(empty style)}">
+									<f:attribute name="style" value="#{style}" />
+								</c:if>
+								<c:if test="#{!(empty tabindex)}">
+									<f:attribute name="tabindex" value="#{tabindex}" />
+								</c:if>
+								<c:if test="#{!(empty title)}">
+									<f:attribute name="title" value="#{title}" />
+								</c:if>
+								<c:if test="#{!(empty validator)}">
+									<f:attribute name="validator" value="#{validator}" />
+								</c:if>
+								<c:if test="#{!(empty valueChangeListener)}">
+									<f:attribute name="valueChangeListener" value="#{valueChangeListener}" />
+								</c:if>
+								<c:if test="#{!(empty converterMessage)}">
+									<f:attribute name="converterMessage" value="#{converterMessage}" />
+								</c:if>
+								<c:if test="#{!(empty requiredMessage)}">
+									<f:attribute name="requiredMessage" value="#{requiredMessage}" />
+								</c:if>
+								<c:if test="#{!(empty validator)}">
+									<f:attribute name="validator" value="#{validator}" />
+								</c:if>
+								<c:if test="#{!(empty validatorMessage)}">
+									<f:attribute name="validatorMessage" value="#{validatorMessage}" />
+								</c:if>
+							</h:inputText>
+							
+						</td>
+						<td valign="bottom" >
+							<hr size="1px" width="8px" style="position: relative; top: 4px" />
+						</td>
+						<td>
+							<h:inputText id="#{idTo}" value="#{toValue}" size="#{size}" styleClass="cajaSimple" required="#{required}"
+								 readonly="#{readonly}" immediate="#{immediate}">
+								 
+								<c:if test="#{!(empty accesskey)}">
+									<f:attribute name="accesskey" value="#{accesskey}" />
+								</c:if>
+								<c:if test="#{!(empty alt)}">
+									<f:attribute name="alt" value="#{alt}" />
+								</c:if>
+								<c:if test="#{!(empty binding)}">
+									<f:attribute name="binding" value="#{binding}" />
+								</c:if>
+								<c:if test="#{!(empty converter)}">
+									<f:attribute name="converter" value="#{converter}" />
+								</c:if>
+								<c:if test="#{!(empty dir)}">
+									<f:attribute name="dir" value="#{dir}" />
+								</c:if>
+								<c:if test="#{!(empty disabled)}">
+									<f:attribute name="disabled" value="#{disabled}" />
+								</c:if>
+								<c:if test="#{!(empty lang)}">
+									<f:attribute name="lang" value="#{lang}" />
+								</c:if>
+								<c:if test="#{!(empty onblur)}">
+									<f:attribute name="onblur" value="#{onblur}" />
+								</c:if>
+								<c:if test="#{!(empty onchange)}">
+									<f:attribute name="onchange" value="#{onchange}" />
+								</c:if>
+								<c:if test="#{!(empty onclick)}">
+									<f:attribute name="onclick" value="#{onclick}" />
+								</c:if>
+								<c:if test="#{!(empty ondblclick)}">
+									<f:attribute name="ondblclick" value="#{ondblclick}" />
+								</c:if>
+								<c:if test="#{!(empty onfocus)}">
+									<f:attribute name="onfocus" value="#{onfocus}" />
+								</c:if>
+								<c:if test="#{!(empty onkeydown)}">
+									<f:attribute name="onkeydown" value="#{onkeydown}" />
+								</c:if>
+								<c:if test="#{!(empty onkeypress)}">
+									<f:attribute name="onkeypress" value="#{onkeypress}" />
+								</c:if>
+								<c:if test="#{!(empty onkeyup)}">
+									<f:attribute name="onkeyup" value="#{onkeyup}" />
+								</c:if>
+								<c:if test="#{!(empty onmousedown)}">
+									<f:attribute name="onmousedown" value="#{onmousedown}" />
+								</c:if>
+								<c:if test="#{!(empty onmousemove)}">
+									<f:attribute name="onmousemove" value="#{onmousemove}" />
+								</c:if>
+								<c:if test="#{!(empty onmouseout)}">
+									<f:attribute name="onmouseout" value="#{onmouseout}" />
+								</c:if>
+								<c:if test="#{!(empty onmouseover)}">
+									<f:attribute name="onmouseover" value="#{onmouseover}" />
+								</c:if>
+								<c:if test="#{!(empty onmouseup)}">
+									<f:attribute name="onmouseup" value="#{onmouseup}" />
+								</c:if>
+								<c:if test="#{!(empty onselect)}">
+									<f:attribute name="onselect" value="#{onselect}" />
+								</c:if>
+								<c:if test="#{!(empty style)}">
+									<f:attribute name="style" value="#{style}" />
+								</c:if>
+								<c:if test="#{!(empty tabindex)}">
+									<f:attribute name="tabindex" value="#{tabindex}" />
+								</c:if>
+								<c:if test="#{!(empty title)}">
+									<f:attribute name="title" value="#{title}" />
+								</c:if>
+								<c:if test="#{!(empty validator)}">
+									<f:attribute name="validator" value="#{validator}" />
+								</c:if>
+								<c:if test="#{!(empty valueChangeListener)}">
+									<f:attribute name="valueChangeListener" value="#{valueChangeListener}" />
+								</c:if>
+								<c:if test="#{!(empty converterMessage)}">
+									<f:attribute name="converterMessage" value="#{converterMessage}" />
+								</c:if>
+								<c:if test="#{!(empty requiredMessage)}">
+									<f:attribute name="requiredMessage" value="#{requiredMessage}" />
+								</c:if>
+								<c:if test="#{!(empty validator)}">
+									<f:attribute name="validator" value="#{validator}" />
+								</c:if>
+								<c:if test="#{!(empty validatorMessage)}">
+									<f:attribute name="validatorMessage" value="#{validatorMessage}" />
+								</c:if>
+							</h:inputText>
+						</td>
+					</tr>
+				</table>
+				
+				
+				<script>
+					#{rich:element(idFrom)}.numParser= new NumberParser();
+					#{rich:element(idFrom)}.numParser.decimalSeparator =".";
+					#{rich:element(idFrom)}.numParser.groupSeparator=",";
+					#{rich:element(idFrom)}.numParser.decimalDigits=#{maxDec};
+
+					
+					#{rich:element(idFrom)}.mask = new NumberMask(#{rich:element(idFrom)}.numParser, "#{rich:clientId(idFrom)}",#{maxInt});
+					#{rich:element(idFrom)}.mask.leftToRight=true;
+					#{rich:element(idTo)}.mask = new NumberMask(#{rich:element(idFrom)}.numParser, "#{rich:clientId(idTo)}",#{maxInt});
+					#{rich:element(idTo)}.mask.leftToRight=true;
+
+				</script>
+			</a:region>
+			<a:region rendered="#{type == 'text'}">
+				<h:inputText id="#{idTxt}" value="#{textValue}" size="#{size}" styleClass="cajaSimple" required="#{required}"
+					 readonly="#{readonly}" immediate="#{immediate}" maxlength="#{maxlength}">
+					
+					<c:if test="#{!(empty accesskey)}">
+						<f:attribute name="accesskey" value="#{accesskey}" />
+					</c:if>
+					<c:if test="#{!(empty alt)}">
+						<f:attribute name="alt" value="#{alt}" />
+					</c:if>
+					<c:if test="#{!(empty binding)}">
+						<f:attribute name="binding" value="#{binding}" />
+					</c:if>
+					<c:if test="#{!(empty converter)}">
+						<f:attribute name="converter" value="#{converter}" />
+					</c:if>
+					<c:if test="#{!(empty dir)}">
+						<f:attribute name="dir" value="#{dir}" />
+					</c:if>
+					<c:if test="#{!(empty disabled)}">
+						<f:attribute name="disabled" value="#{disabled}" />
+					</c:if>
+					<c:if test="#{!(empty lang)}">
+						<f:attribute name="lang" value="#{lang}" />
+					</c:if>
+					<c:if test="#{!(empty onblur)}">
+						<f:attribute name="onblur" value="#{onblur}" />
+					</c:if>
+					<c:if test="#{!(empty onchange)}">
+						<f:attribute name="onchange" value="#{onchange}" />
+					</c:if>
+					<c:if test="#{!(empty onclick)}">
+						<f:attribute name="onclick" value="#{onclick}" />
+					</c:if>
+					<c:if test="#{!(empty ondblclick)}">
+						<f:attribute name="ondblclick" value="#{ondblclick}" />
+					</c:if>
+					<c:if test="#{!(empty onfocus)}">
+						<f:attribute name="onfocus" value="#{onfocus}" />
+					</c:if>
+					<c:if test="#{!(empty onkeydown)}">
+						<f:attribute name="onkeydown" value="#{onkeydown}" />
+					</c:if>
+					<c:if test="#{!(empty onkeypress)}">
+						<f:attribute name="onkeypress" value="#{onkeypress}" />
+					</c:if>
+					<c:if test="#{!(empty onkeyup)}">
+						<f:attribute name="onkeyup" value="#{onkeyup}" />
+					</c:if>
+					<c:if test="#{!(empty onmousedown)}">
+						<f:attribute name="onmousedown" value="#{onmousedown}" />
+					</c:if>
+					<c:if test="#{!(empty onmousemove)}">
+						<f:attribute name="onmousemove" value="#{onmousemove}" />
+					</c:if>
+					<c:if test="#{!(empty onmouseout)}">
+						<f:attribute name="onmouseout" value="#{onmouseout}" />
+					</c:if>
+					<c:if test="#{!(empty onmouseover)}">
+						<f:attribute name="onmouseover" value="#{onmouseover}" />
+					</c:if>
+					<c:if test="#{!(empty onmouseup)}">
+						<f:attribute name="onmouseup" value="#{onmouseup}" />
+					</c:if>
+					<c:if test="#{!(empty onselect)}">
+						<f:attribute name="onselect" value="#{onselect}" />
+					</c:if>
+					<c:if test="#{!(empty style)}">
+						<f:attribute name="style" value="#{style}" />
+					</c:if>
+					<c:if test="#{!(empty tabindex)}">
+						<f:attribute name="tabindex" value="#{tabindex}" />
+					</c:if>
+					<c:if test="#{!(empty title)}">
+						<f:attribute name="title" value="#{title}" />
+					</c:if>
+					<c:if test="#{!(empty validator)}">
+						<f:attribute name="validator" value="#{validator}" />
+					</c:if>
+					<c:if test="#{!(empty valueChangeListener)}">
+						<f:attribute name="valueChangeListener" value="#{valueChangeListener}" />
+					</c:if>
+					<c:if test="#{!(empty converterMessage)}">
+						<f:attribute name="converterMessage" value="#{converterMessage}" />
+					</c:if>
+					<c:if test="#{!(empty requiredMessage)}">
+						<f:attribute name="requiredMessage" value="#{requiredMessage}" />
+					</c:if>
+					<c:if test="#{!(empty validator)}">
+						<f:attribute name="validator" value="#{validator}" />
+					</c:if>
+					<c:if test="#{!(empty validatorMessage)}">
+						<f:attribute name="validatorMessage" value="#{validatorMessage}" />
+					</c:if>
+				</h:inputText>
+			</a:region>
+		</a:region>	
+	</ui:define>
+</ui:composition>

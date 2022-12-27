@@ -1,0 +1,354 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:his="http://colsanitas.com/jsf/facelets"
+	template="../layout/template.xhtml">
+
+	<ui:define name="contenido">
+		<f:view>
+			<script
+				src="#{facesContext.externalContext.requestContextPath}/js/util.js"
+				type="text/javascript"></script>
+			<script type="text/javascript">
+				//<![CDATA[
+         function checkAllCheckboxesInTable( inputId, state ){
+           var commonIdPart = inputId.substr(0, inputId.lastIndexOf(':'));
+           var tableId = commonIdPart;
+           var tableElement = document.getElementById( tableId );
+           var inputs = tableElement.getElementsByTagName('input');
+           for (var i = 0; i <= inputs.length; i++){
+               var input = inputs[i];
+               if( input.getAttribute('type') == 'checkbox' && state){
+                 input.setAttribute('checked', state);
+               }else{
+                 input.removeAttribute('checked');
+               }
+           }
+         }
+         //]]>
+       </script>
+			<a:form id="formAdminPlant">
+				<a:region renderRegionOnly="false" id="regionFormAdminPlant">
+					<his:progressBar id="prFormAdminPlantilla"
+						idRegion="regionFormAdminPlant" />
+					<a:jsFunction name="consultarPlantillaRolePrest"
+						action="#{administraPlantillaRolWeb.listarPlantillaRolePrest}"
+						reRender="pgRolesPlant" />
+					<rich:message for="formAdminPlant" var="messages"
+						errorClass="txtUnoError" warnClass="txtUnoAlerta"
+						infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+					<h:panelGrid columns="1" width="100%" border="0"
+						id="contenidoPlantRole"
+						rendered="#{identity.hasRole(msg.permiso_autorizar_administrador)}">
+						<h:panelGroup>
+							<div style="width: 100%" align="left" class="titulos">
+								<h:outputText value="#{msg.menu_admin_user_plantilla_roles}" />
+							</div>
+						</h:panelGroup>
+						<h:panelGroup>
+							<div style="height: 5px;" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<div class="subSec" style="width: 98%;">
+								<h:outputText value="#{msg.reg_admin_sel_pres}" />
+							</div>
+						</h:panelGroup>
+						<h:panelGroup>
+							<div style="height: 10px;" />
+						</h:panelGroup>
+						<h:panelGroup id="pgFinderPrestLocal">
+							<div align="left">
+								<h:panelGrid columns="3" border="0" cellpadding="0"
+									cellspacing="0">
+									<h:panelGroup>
+										<h:outputText value="#{msg.prestador}:"
+											styleClass="txtCampoRequerido" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<div style="width: 5px;" />
+									</h:panelGroup>
+									<h:panelGroup
+										rendered="#{identity.hasRole(msg.permiso_autorizar_administrador)}">
+										<his:finder id="finderPrestLocal"
+											bean="#{administraPlantillaRolWeb.prestadorLocalFinder}"
+											showValueBox="true" valueMaxlength="32" labelMaxlength="50"
+											value="#{administraPlantillaRolWeb.prestadorLocalSelected}"
+											onChoice="#{rich:element('outputLinkPrestLocal')}.onclick();"
+											rows="2" labelStyle="height:35px; width:530px;" width="520"
+											refreshObjectOnLabel="true" valueSize="15"
+											reRender="pgAdminRoles"
+											onAfterSelect="consultarPlantillaRolePrest()"
+											disabled="#{empty administraPlantillaRolWeb.listDomain}"
+											disabilitarDesc="#{empty administraPlantillaRolWeb.listDomain ? 'disabilitarDesc' : '' }"/>
+										<h:outputLink value="" id="outputLinkPrestLocal">
+											<a:support event="onclick"
+												actionListener="#{administraPlantillaRolWeb.listarPlantillaRolePrest}"
+												ajaxSingle="true" reRender="pgRolesPlant" />
+										</h:outputLink>
+									</h:panelGroup>
+								</h:panelGrid>
+							</div>
+						</h:panelGroup>
+						<h:panelGroup>
+							<div style="height: 5px;" />
+						</h:panelGroup>
+						<h:panelGroup>
+							<div class="subSec" style="width: 98%;">
+								<h:outputText value="#{msg.plantilla_roles_titulo_admin_role}" />
+							</div>
+						</h:panelGroup>
+						<h:panelGroup>
+							<div style="height: 5px;" />
+						</h:panelGroup>
+						<h:panelGroup id="pgMsgInfoAdminRol">
+							<div align="left">
+								<rich:message for="pgMsgInfoAdminRol" var="messages"
+									errorClass="txtUnoError" warnClass="txtUnoAlerta"
+									infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+							</div>
+						</h:panelGroup>
+						<h:panelGroup id="pgAdminRoles">
+							<h:panelGrid columns="5" width="100%" border="0">
+								<h:panelGroup id="pgBusqRole">
+									<a:region renderRegionOnly="false" id="regionFormBusqRole">
+										<a:jsFunction name="guardarPlantillaRole"
+											action="#{administraPlantillaRolWeb.guardarPlantillaRoles}"
+											reRender="sessionModAdminPlantilla" />
+										<his:progressBar id="prFormBusqRole"
+											idRegion="regionFormBusqRole" />
+										<h:panelGrid columns="2" border="0" cellpadding="3">
+											<h:panelGroup>
+												<div class="txtTituloNegrilla">
+													<h:outputText value="#{msg.plantilla_roles_aplicacion}:" />
+													<h:outputText value="*" styleClass="asteriscoRequerido" />
+												</div>
+											</h:panelGroup>
+											<h:panelGroup>
+												<his:selectOneMenu styleClass="combo" style="width:200px;"
+													id="selIdAplicacion" required="true"
+													value="#{administraPlantillaRolWeb.idDomain}"
+													jsfc="his:selectOneMenu"
+													disabled="#{empty administraPlantillaRolWeb.prestadorLocalSelected.prestadorId || empty administraPlantillaRolWeb.listDomain}">
+													<f:selectItems value="#{administraPlantillaRolWeb.listDomain}" />
+													<a:support event="onchange"
+														action="#{administraPlantillaRolWeb.cargarGrupoRolDomain}"
+														reRender="pgGroupRol,pgRoleSel" ajaxSingle="true" />
+												</his:selectOneMenu>
+											</h:panelGroup>
+											<h:panelGroup>
+												<div class="txtTituloNegrilla">
+													<h:outputText value="#{msg.plantilla_roles_grupo_rol}:" />
+													<h:outputText value="*" styleClass="asteriscoRequerido" />
+												</div>
+											</h:panelGroup>
+											<h:panelGroup id="pgGroupRol">
+												<his:selectOneMenu styleClass="combo" style="width:200px;"
+													id="selIdGroupRol" required="true"
+													value="#{administraPlantillaRolWeb.idGroupRol}"
+													jsfc="his:selectOneMenu"
+													disabled="#{empty administraPlantillaRolWeb.prestadorLocalSelected.prestadorId || empty administraPlantillaRolWeb.listDomain}">
+													<f:selectItems value="#{administraPlantillaRolWeb.listGroupRole}" />
+													<a:support event="onchange"
+														action="#{administraPlantillaRolWeb.seleccionarRol(null)}"
+														reRender="pgRoleSel" ajaxSingle="true" />
+												</his:selectOneMenu>
+											</h:panelGroup>
+											<h:panelGroup>
+												<div class="txtTituloNegrilla">
+													<h:outputText value="#{msg.plantilla_roles_role}:" />
+													<h:outputText value="*" styleClass="asteriscoRequerido" />
+												</div>
+											</h:panelGroup>
+											<h:panelGroup id="pgRoleSel">
+												<h:panelGrid columns="1" border="0">
+													<h:panelGroup>
+														<his:inputText jsfc="his:inputText"
+															value="#{administraPlantillaRolWeb.roleSel.name}"
+															id="roleSeleccionado" styleClass="cajaSimple"
+															maxlength="200" size="25"
+															disabled="#{empty administraPlantillaRolWeb.prestadorLocalSelected.prestadorId || empty administraPlantillaRolWeb.listDomain}" />
+													</h:panelGroup>
+													<h:panelGroup>
+														<div align="right">
+															<a:commandButton styleClass="botonBuscarNivelUno"
+																id="busqRole"
+																action="#{administraPlantillaRolWeb.cargarRolesByDomainGrpRole}"
+																oncomplete="if (#{facesContext.maximumSeverity==null}){Richfaces.showModalPanel('pnlSelListRoles');}"
+																reRender="sessionModAdminPlantilla"
+																disabled="#{empty administraPlantillaRolWeb.listDomain}" />
+															<rich:toolTip for="busqRole" styleClass="ToolTipUno"
+																direction="top-left" followMouse="true"
+																horizontalOffset="4">
+																<h:outputText value="#{msg.plantilla_roles_buscar_role}"
+																	escape="false" />
+															</rich:toolTip>
+														</div>
+													</h:panelGroup>
+												</h:panelGrid>
+											</h:panelGroup>
+										</h:panelGrid>
+									</a:region>
+								</h:panelGroup>
+								<h:panelGroup>
+									<div style="width: 10px" />
+								</h:panelGroup>
+								<h:panelGroup id="pgRolesPlant">
+									<a:region renderRegionOnly="false" id="regionRolesPlant">
+										<his:progressBar id="prRolesPlant" idRegion="regionRolesPlant" />
+										<h:panelGrid columns="3">
+											<h:panelGroup id="pgGestionRoles">
+												<h:panelGrid columns="1" width="20" border="0">
+													<div align="center">
+														<h:panelGroup>
+															<a:commandButton id="accionAgrRole"
+																styleClass="botonCancelNivelDos"
+																action="#{administraPlantillaRolWeb.agregarRolPlantilla}"
+																reRender="sessionModAdminPlantilla, pgRolesPlant"
+																ajaxSingle="true"
+																disabled="#{empty administraPlantillaRolWeb.listDomain}" />
+															<rich:toolTip for="accionAgrRole" styleClass="ToolTipUno"
+																direction="top-left" followMouse="true"
+																horizontalOffset="4">
+																<h:outputText value="#{msg.plantilla_roles_agr_role}"
+																	escape="false" />
+															</rich:toolTip>
+														</h:panelGroup>
+														<h:panelGroup>
+															<div style="height: 5px;" />
+														</h:panelGroup>
+														<h:panelGroup>
+															<a:commandButton id="accionElmRole"
+																styleClass="botonAgregNivelDos"
+																action="#{administraPlantillaRolWeb.eliminarRolesPlantilla}"
+																reRender="sessionModAdminPlantilla,pgRolesPlant"
+																disabled="#{empty administraPlantillaRolWeb.listDomain}" />
+															<rich:toolTip for="accionElmRole" styleClass="ToolTipUno"
+																direction="top-left" followMouse="true"
+																horizontalOffset="4">
+																<h:outputText value="#{msg.plantilla_roles_elm_role}"
+																	escape="false" />
+															</rich:toolTip>
+														</h:panelGroup>
+													</div>
+												</h:panelGrid>
+											</h:panelGroup>
+											<h:panelGroup>
+												<div style="width: 10px" />
+											</h:panelGroup>
+											<h:panelGroup id="pgListPlantRole">
+												<h:panelGrid columns="1" width="460">
+													<h:panelGroup>
+														<rich:dataTable cellspacing="1" cellpadding="1" border="0"
+															width="100%" id="listRolesPlan"
+															styleClass="BordeTablasDos centrarTexto"
+															rowClasses="impar,par"
+															rows="#{msg.rowsPerPageGestionRole}"
+															rowKeyVar="seleccion"
+															value="#{administraPlantillaRolWeb.listRolePlantPrest}"
+															var="dataItemRolePlan"
+															headerClass="dr-table-header rich-table-header"
+															reRender="scrollDataTableLisRolesPlan">
+															<rich:column>
+																<f:facet name="header">
+																	<h:selectBooleanCheckbox id="checkAll"
+																		title="#{mas.plantilla_roles_check_sel_all}"
+																		value="#{administraPlantillaRolWeb.checkAll}"
+																		disabled="#{empty administraPlantillaRolWeb.listRolePlantPrest || empty administraPlantillaRolWeb.listDomain}">
+																		<a:support event="onchange" action="#{administraPlantillaRolWeb.seleccionarTodos}"
+																			reRender="listRolesPlan" />
+																	</h:selectBooleanCheckbox>
+																</f:facet>
+																<h:selectBooleanCheckbox id="checkEntry"
+																	value="#{dataItemRolePlan.selected}" disabled="#{empty administraPlantillaRolWeb.listDomain}"
+																	rendered="#{dataItemRolePlan.administradorDominio}"
+																	immediate="true">
+																	<a:support event="onchange" reRender="listRolesPlan" ajaxSingle="true" />
+																</h:selectBooleanCheckbox>
+															</rich:column>
+															<rich:column sortBy="#{dataItemRolePlan.role.name}">
+																<f:facet name="header">
+																	<h:outputText value="#{msg.plantilla_roles_role}" />
+																</f:facet>
+																<div align="left">
+																	<h:outputText value="#{dataItemRolePlan.role.name}"
+																		styleClass="textogeneral" />
+																</div>
+															</rich:column>
+															<rich:column
+																sortBy="#{dataItemRolePlan.role.groupRole.name}">
+																<f:facet name="header">
+																	<h:outputText value="#{msg.plantilla_roles_grupo_rol}" />
+																</f:facet>
+																<div align="left">
+																	<h:outputText
+																		value="#{dataItemRolePlan.role.groupRole.name}"
+																		styleClass="textogeneral" />
+																</div>
+															</rich:column>
+															<rich:column
+																sortBy="#{dataItemRolePlan.role.domain.name}">
+																<f:facet name="header">
+																	<h:outputText value="#{msg.plantilla_roles_aplicacion}" />
+																</f:facet>
+																<div align="left">
+																	<h:outputText
+																		value="#{dataItemRolePlan.role.domain.name}"
+																		styleClass="textogeneral" />
+																</div>
+															</rich:column>
+														</rich:dataTable>
+														<br />
+														<rich:datascroller id="scrollDataTableLisRolesPlan"
+															for="listRolesPlan" align="center"
+															renderIfSinglePage="false" />
+														<br />
+													</h:panelGroup>
+													<h:panelGroup>
+														<div align="right">
+															<h:panelGrid columns="3" border="0">
+																<h:panelGroup>
+																	<a:commandButton id="btnAgrRoles"
+																		value="#{msg.guardar}" styleClass="boton"
+																		action="#{administraPlantillaRolWeb.guardarPlantillaRoles}"
+																		reRender="sessionModAdminPlantilla"
+																		disabled="#{empty administraPlantillaRolWeb.listDomain}" />
+																</h:panelGroup>
+																<h:panelGroup>
+																	<div style="width: 10px" />
+																</h:panelGroup>
+																<h:panelGroup>
+																	<a:commandButton id="btnCanRoles"
+																		value="#{msg.cancelar}" styleClass="boton"
+																		action="#{administraPlantillaRolWeb.cancelarProceso}"
+																		reRender="contenidoPlantRole" ajaxSingle="true"
+																		immediate="true" />
+																</h:panelGroup>
+															</h:panelGrid>
+														</div>
+													</h:panelGroup>
+												</h:panelGrid>
+											</h:panelGroup>
+										</h:panelGrid>
+									</a:region>
+								</h:panelGroup>
+							</h:panelGrid>
+						</h:panelGroup>
+					</h:panelGrid>
+				</a:region>
+			</a:form>
+			<!-- Area de modales -->
+			<h:panelGroup id="sessionModAdminPlantilla">
+				<a:include viewId="../modales/modalAgrRole.xhtml"
+					id="includeModListRoles" />
+				<a:include viewId="../modales/modalConfirRegPlantilla.xhtml"
+					id="includeModConfirRegPlant" />
+			</h:panelGroup>
+		</f:view>
+	</ui:define>
+</ui:composition>

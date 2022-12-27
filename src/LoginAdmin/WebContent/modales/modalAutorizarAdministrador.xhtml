@@ -1,0 +1,137 @@
+<rich:modalPanel id="pnlAutorizarAdmin" width="600" height="90" autosized="true" resizeable="false" moveable="true"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:his="http://colsanitas.com/jsf/facelets">
+	
+	<f:facet name="header">
+	  <h:panelGroup>
+	  	<div align="left">
+	  		<h:outputText value="#{msg.autorizarAdmin_seleccione}" styleClass="subSec"></h:outputText>
+	  	</div>
+	  </h:panelGroup>
+  </f:facet>
+
+		<a:form id="formAutAdmin">
+			<a:region renderRegionOnly="false" id="regionFormAutAdmin">
+				<his:progressBar id="prFormAutAdmin" idRegion="regionFormAutAdmin" />
+				
+				<div class="contenido">
+				<h:panelGrid columns="1" width="100%" id="panelContenidoRes" cellpadding="0" cellspacing="0" >
+					
+					<h:panelGroup>
+						<div style="height:10px;"/>
+					</h:panelGroup>
+					
+					<h:panelGroup>
+						<div style="width:98%;margin-left: 15px;" align="left">
+							<rich:message for="formAutAdmin" var="messages"
+								errorClass="txtUnoError" warnClass="txtUnoAlerta"
+								infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+						</div>
+					</h:panelGroup>
+					
+					<h:panelGroup>
+						<div style="height:5px;"/>
+					</h:panelGroup>
+					
+					<h:panelGroup>
+						<a:region renderRegionOnly="false" id="regionBusqPrestador">
+								<his:progressBar id="regionBusqPrestador" idRegion="regionBusqPrestador" />
+							<div style="width:98%;margin-left: 15px;" align="left">
+								<h:panelGrid columns="4" border="0" cellpadding="3" cellspacing="3">
+									<h:panelGroup>
+										<div class="txtTituloNegrilla" align="left">
+											<h:outputText value="#{msg.tipo_num_identificacion}:" escape="false" />
+											<h:outputText value="*" styleClass="asteriscoRequerido" />
+										</div>
+									</h:panelGroup>
+									<h:panelGroup>
+										<his:selectOneMenu styleClass="combo" style="width:100px;"
+				 							id="modTipoDocPres" required="true" immediate="true"
+											value="#{consultarUsuarioWeb.tipoDocSel}" jsfc="his:selectOneMenu" >
+											 <a:support event="onchange" action="#{consultarUsuarioWeb.limpiarDatos}" 
+										 	     onsubmit="var myTextField = document.getElementById('includePnlAutorizarAdmin:formAutAdmin:modCodigoPrest'); if(myTextField.value == '') {return false;}" 
+										 		 reRender="pgPrestador,pgSucursales" />
+											<f:selectItems value="#{consultarUsuarioWeb.listTipoDocs}" />
+										</his:selectOneMenu>
+									</h:panelGroup>
+									<h:panelGroup>
+										<his:inputText id="modCodigoPrest" jsfc="his:inputText"
+											value="#{consultarUsuarioWeb.codigoPrestBusq}"
+											size="20" maxlength="32" styleClass="cajaSimple" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<a:commandButton styleClass="botonBuscarNivelUno"
+											id="modBuscarUser"
+											action="#{consultarUsuarioWeb.buscarPrestadorAzimut}"
+											reRender="pgPrestador,pgSucursales"
+											rendered="#{identity.hasRole(msg.permiso_consultar_usuario)}" />
+									</h:panelGroup>	
+								</h:panelGrid>
+							</div>
+						</a:region>	
+					</h:panelGroup>
+					
+					<h:panelGroup id="pgPrestador">
+						<div style="width:98%;margin-left: 15px;" align="left">
+							<h:panelGrid columns="2" border="0" cellpadding="3" cellspacing="3" rendered="#{not empty consultarUsuarioWeb.datosPrestadorDTO and not empty consultarUsuarioWeb.datosPrestadorDTO.razonSocial}">
+								<h:panelGroup>
+									<h:outputText value="#{msg.prestador}:" styleClass="txtCampoRequerido" />
+									<h:outputText value="*" styleClass="asteriscoRequerido" />
+								</h:panelGroup>
+								<h:panelGroup>
+									<his:inputText id="modPrestador" jsfc="his:inputText" style="width:100%;"
+										value="#{consultarUsuarioWeb.datosPrestadorDTO.razonSocial}"
+										size="80" maxlength="100" styleClass="cajaSimple" readonly="true"/>
+								</h:panelGroup>
+							</h:panelGrid>
+						</div>
+					</h:panelGroup>
+					
+					<h:panelGroup id="pgSucursales">
+						<div style="width:98%;margin-left:15px;" align="left">
+							<h:panelGrid columns="2" border="0" cellpadding="4" cellspacing="3" rendered="#{not empty consultarUsuarioWeb.listaSucursales}">
+								<h:panelGroup>
+									<h:outputText value="#{msg.sucursal}:" styleClass="txtCampoRequerido" />
+									<h:outputText value="*" styleClass="asteriscoRequerido" />
+								</h:panelGroup>
+								<h:panelGroup>
+									<his:selectOneMenu styleClass="combo" style="width:570px;"
+										id="idSucursales" required="true" immediate="true"
+										value="#{consultarUsuarioWeb.sucursalSel}" jsfc="his:selectOneMenu">
+										<f:selectItems value="#{consultarUsuarioWeb.listaSucursales}" />
+									</his:selectOneMenu>
+								</h:panelGroup>
+							</h:panelGrid>
+						</div>
+					</h:panelGroup>
+					
+					<h:panelGroup>
+						<div align="right" style=" width : 440px;">
+							<h:panelGrid columns="3">
+								<h:panelGroup>
+									<a:commandButton styleClass="boton" value="#{msg.aceptar}" 
+										action="#{consultarUsuarioWeb.autorizarAdmin}"
+										reRender="pgListRelUser"
+										oncomplete="if (#{facesContext.maximumSeverity==null || consultarUsuarioWeb.userResponseView.responseCode == 11 || consultarUsuarioWeb.userResponseView.responseCode == 35}){Richfaces.hideModalPanel('pnlAutorizarAdmin')}"/>
+								</h:panelGroup>
+								<h:panelGroup><div style="width: 5px" /></h:panelGroup>
+								<h:panelGroup>
+									<a:commandButton styleClass="boton" value="#{msg.cancelar}" ajaxSingle="true" immediate="true" onclick="#{rich:component('pnlAutorizarAdmin')}.hide();" />
+								</h:panelGroup>
+							</h:panelGrid>
+						</div>
+					</h:panelGroup>
+					<rich:hotKey key="Esc" handler="#{rich:component('pnlAutorizarAdmin')}.hide();" />
+					<br/>
+				</h:panelGrid>
+				</div>
+			</a:region>		
+		</a:form>
+</rich:modalPanel>

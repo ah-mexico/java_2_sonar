@@ -1,0 +1,30 @@
+<ui:composition
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+		<c:set var="componente" value="#{componente}" />
+		<c:set var="idHC" value="#{componente}_resumeHC" /> 
+		<c:set var="idComponente" value="#{componente}" />
+		
+		
+		<a:commandButton
+			styleClass="botonVerResumenHCNivelTres" 
+			action="#{resumenHistoriaClinicaWeb.inicializarObjetos()}"
+			id="#{idHC}" immediate="true"
+			reRender="resumenHCModal"
+			oncomplete="Richfaces.showModalPanel('resumenHCModal',{})">
+			<div align="left">
+			<rich:toolTip for="#{idHC}" styleClass="ToolTipUno" direction="top-left">
+				<h:outputText value="#{messages.seccionesHistoriaClini}" escape="false" />
+			</rich:toolTip>
+			</div>
+			</a:commandButton>
+			
+		<ui:include	src="../../../sistema/emergenteHistoriaClinical.xhtml" />
+
+</ui:composition>

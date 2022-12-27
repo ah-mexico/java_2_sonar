@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich">
+	
+	<script type="text/javascript" language="javascript">
+		function refrescarPag(url) {
+			window.location.href=url;
+		}
+	</script>
+
+	<div align="center">
+		<h:panelGrid columns="3" border = "0" rendered="#{empty rendered ?'true':rendered}">
+			<h:panelGroup>
+				<a:commandButton id="btnBusqAvan" styleClass="botonBuscarNivelDos"
+					disabled="#{disableButtons}" action="#{crudTableBean.filterResults}"
+					reRender="#{reRender}" ajaxSingle="false"
+					immediate="false" bypassUpdates="false" 
+					eventsQueue="crudTablebuttons"
+					ignoreDupResponses="true"
+					rendered="#{not empty busqAvanzada and busqAvanzada == true ? true : false}"/>
+					<rich:toolTip for="btnBusqAvan" styleClass="ToolTipUno" direction="top-left" followMouse="true" horizontalOffset="4" >
+						<h:outputText value="#{msg.busqueda_avanzada}" escape="false" />
+					</rich:toolTip>
+			</h:panelGroup>
+			<h:panelGroup>
+				<a:commandButton id="btnGuardarNuevo" styleClass="botonGuardarNivelDos"
+					disabled="#{disableButtons}" action="#{crudTableBean.add(true)}"
+					reRender="#{reRender}" 
+					ajaxSingle="false" bypassUpdates="false" 
+					eventsQueue="crudTablebuttons"
+					ignoreDupResponses="true"
+					rendered="#{identity.hasRole(msg.permiso_crear_usuario)}"/>
+					<rich:toolTip for="btnGuardarNuevo" styleClass="ToolTipUno" direction="top-left" followMouse="true" horizontalOffset="4" >
+						<h:outputText value="#{msg.guardar}" escape="false" />
+					</rich:toolTip>
+			</h:panelGroup> 
+			<h:panelGroup>
+				<a:commandButton id="btnCancelarNuevo" styleClass="botonCancelarNivelDos"
+					disabled="#{disableButtons}" action="#{crudTableBean.cancel()}"
+					ajaxSingle="true"
+					bypassUpdates="false"
+					immediate="true"
+					reRender="#{reRender}"
+					eventsQueue="crudTablebuttons"
+					ignoreDupResponses="true"
+					oncomplete="#{onCancelCompleted}"/>
+					<rich:toolTip for="btnCancelarNuevo" styleClass="ToolTipUno" direction="top-left" followMouse="true" horizontalOffset="4">
+						<h:outputText value="#{msg.cancelar}" escape="false" />
+					</rich:toolTip>
+			</h:panelGroup>
+	</h:panelGrid>
+	</div>
+
+</ui:composition>

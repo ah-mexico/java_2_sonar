@@ -1,0 +1,203 @@
+<ui:component xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:his="http://his.colsanitas.osi.com/jsf"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:s="http://jboss.com/products/seam/taglib">
+      
+	<c:if test="#{empty size}">
+    	<c:set var="size" value="10" />
+   	</c:if>
+   	<c:if test="#{empty required}">
+    	<c:set var="required" value="false" />
+   	</c:if>
+   	<c:if test="#{empty rendered}">
+    	<c:set var="rendered" value="true" />
+   	</c:if>
+   	<c:if test="#{empty readonly}">
+    	<c:set var="readonly" value="false" />
+   	</c:if>	
+   	<c:if test="#{empty immediate}">
+		<c:set var="immediate" value="false" />
+	</c:if>
+   	<c:if test="#{empty value}">
+		<f:attribute name="value" value="" />
+	</c:if>
+	<c:if test="#{empty type}">
+		<c:set var="type" value="none" />
+	</c:if>
+	<c:if test="#{type=='double'}">   
+        <c:if test="#{empty partInt}">
+		  <c:set var="partInt" value="2" />
+	    </c:if>
+	</c:if>
+	<c:if test="#{type=='double'}">
+        <c:if test="#{empty partFloat}">
+		  <c:set var="partFloat" value="2" />
+	    </c:if>
+	</c:if>
+    
+	<c:set var="maskNone" value="*^" />
+    <c:set var="maskInteger" value="9^" />
+    <c:set var="maskLetter" value="C^ " />
+	<c:set var="maskDate" value="99/99/9999" />
+	<c:set var="maskDouble" value="#{partInt}.#{partFloat}" />
+	<c:set var="maskUser" value="#{maskUserDefine}" />
+	
+	<c:set var="mask" value="#{maskNone}" />
+    
+    <c:if test="#{!empty type}" >
+      <c:if test="#{type=='integer'}" >
+        <c:set var="mask" value="#{maskInteger}" />
+      </c:if>
+   	</c:if>
+   	
+   	<c:if test="#{!empty type}" >
+      <c:if test="#{type=='double'}" >
+        <c:set var="mask" value="#{maskDouble}" />
+      </c:if>
+   	</c:if>
+   	
+   	<c:if test="#{!empty type}" >
+      <c:if test="#{type=='letters'}" >
+        <c:set var="mask" value="#{maskLetter}" />
+      </c:if>
+   	</c:if>
+   	   	
+   	<c:if test="#{!empty type}" >
+      <c:if test="#{type=='date'}" >
+        <c:set var="mask" value="#{maskDate}" />
+      </c:if>
+   	</c:if>
+   	
+   	<c:if test="#{!empty type}" >
+      <c:if test="#{type=='user'}" >
+        <c:set var="mask" value="#{maskUser}" />
+      </c:if>
+   	</c:if>
+
+    <c:if test="#{!empty type}" >
+      <c:if test="#{type=='none'}" >
+        <c:set var="mask" value="#{maskNone}" />
+      </c:if>
+   	</c:if>
+   	
+   	<c:if test="#{type=='user'}">
+        <c:if test="#{empty maskUserDefine}">
+		  <c:set var="mask" value="#{maskNone}" />
+	    </c:if>
+	</c:if>
+    
+   <c:set var="idtxt" value="#{id}txt" /> 
+   <s:div id="#{id}"> 
+	<h:inputText id="#{idtxt}" size="#{size}" required="#{required}" value="#{value}" 
+				 rendered="#{rendered}" maxlength="#{empty maxlength?2000:maxlength}"
+				 disabled="#{empty disabled?'false':disabled}" 
+				 readonly="#{readonly}" immediate="#{immediate}">	 
+		<c:if test="#{!(empty accesskey)}">
+			<f:attribute name="accesskey" value="#{accesskey}" />
+		</c:if>
+		<c:if test="#{!(empty alt)}">
+			<f:attribute name="alt" value="#{alt}" />
+		</c:if>
+		<c:if test="#{!(empty binding)}">
+			<f:attribute name="binding" value="#{binding}" />
+		</c:if>
+		<c:if test="#{!(empty converter)}">
+			<f:attribute name="converter" value="#{converter}" />
+		</c:if>
+		<c:if test="#{!(empty dir)}">
+			<f:attribute name="dir" value="#{dir}" />
+		</c:if>
+		<c:if test="#{!(empty disabled)}">
+			<f:attribute name="disabled" value="#{disabled}" />
+		</c:if>
+		<c:if test="#{!(empty lang)}">
+			<f:attribute name="lang" value="#{lang}" />
+		</c:if>
+		<c:if test="#{!(empty onblur)}">
+			<f:attribute name="onblur" value="#{onblur}" />
+		</c:if>
+		<c:if test="#{!(empty onchange)}">
+			<f:attribute name="onchange" value="#{onchange}" />
+		</c:if>
+		<c:if test="#{!(empty onclick)}">
+			<f:attribute name="onclick" value="#{onclick}" />
+		</c:if>
+		<c:if test="#{!(empty ondblclick)}">
+			<f:attribute name="ondblclick" value="#{ondblclick}" />
+		</c:if>
+		<c:if test="#{!(empty onfocus)}">
+			<f:attribute name="onfocus" value="#{onfocus}" />
+		</c:if>
+		<c:if test="#{!(empty onkeydown)}">
+			<f:attribute name="onkeydown" value="#{onkeydown}" />
+		</c:if>
+		<c:if test="#{!(empty onkeypress)}">
+			<f:attribute name="onkeypress" value="#{onkeypress}" />
+		</c:if>
+		<c:if test="#{!(empty onkeyup)}">
+			<f:attribute name="onkeyup" value="#{onkeyup}" />
+		</c:if>
+		<c:if test="#{!(empty onmousedown)}">
+			<f:attribute name="onmousedown" value="#{onmousedown}" />
+		</c:if>
+		<c:if test="#{!(empty onmousemove)}">
+			<f:attribute name="onmousemove" value="#{onmousemove}" />
+		</c:if>
+		<c:if test="#{!(empty onmouseout)}">
+			<f:attribute name="onmouseout" value="#{onmouseout}" />
+		</c:if>
+		<c:if test="#{!(empty onmouseover)}">
+			<f:attribute name="onmouseover" value="#{onmouseover}" />
+		</c:if>
+		<c:if test="#{!(empty onmouseup)}">
+			<f:attribute name="onmouseup" value="#{onmouseup}" />
+		</c:if>
+		<c:if test="#{!(empty onselect)}">
+			<f:attribute name="onselect" value="#{onselect}" />
+		</c:if>
+		<c:if test="#{!(empty style)}">
+			<f:attribute name="style" value="#{style}" />
+		</c:if>
+		<c:if test="#{!(empty styleClass)}">
+			<f:attribute name="styleClass" value="#{styleClass}" />
+		</c:if>
+		<c:if test="#{!(empty tabindex)}">
+			<f:attribute name="tabindex" value="#{tabindex}" />
+		</c:if>
+		<c:if test="#{!(empty title)}">
+			<f:attribute name="title" value="#{title}" />
+		</c:if>
+		<c:if test="#{!(empty validator)}">
+			<f:attribute name="validator" value="#{validator}" />
+		</c:if>
+		<c:if test="#{!(empty valueChangeListener)}">
+			<f:attribute name="valueChangeListener" value="#{valueChangeListener}" />
+		</c:if>
+		<c:if test="#{!(empty converterMessage)}">
+			<f:attribute name="converterMessage" value="#{converterMessage}" />
+		</c:if>
+		<c:if test="#{!(empty requiredMessage)}">
+			<f:attribute name="requiredMessage" value="#{requiredMessage}" />
+		</c:if>
+		<c:if test="#{!(empty validator)}">
+			<f:attribute name="validator" value="#{validator}" />
+		</c:if>
+		<c:if test="#{!(empty validatorMessage)}">
+			<f:attribute name="validatorMessage" value="#{validatorMessage}" />
+		</c:if>
+		<ui:insert/>
+		
+	</h:inputText>
+	<script>MaskInput(document.getElementById('#{rich:clientId(idtxt)}'),"#{mask}");</script>
+  </s:div>
+  <h:panelGrid border="0" columns="1" width="98%" cellpadding="0" cellspacing="0">
+  <h:panelGroup rendered="#{facesContext.getMessages(rich:clientId(idtxt)).hasNext()}">
+	 <rich:message for="#{idtxt}" errorClass="message" warnClass="message" infoClass="textogeneralAzul"/>
+  </h:panelGroup>
+  </h:panelGrid>			
+  			
+</ui:component>

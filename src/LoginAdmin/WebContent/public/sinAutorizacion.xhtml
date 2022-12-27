@@ -1,0 +1,31 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:his="http://colsanitas.com/jsf/facelets"
+	template="../layout/template.xhtml">
+
+	<ui:define name="contenido">
+		<f:view>
+			<h:panelGrid columns="1"  width="100%" border="0">
+				<h:panelGroup>
+					<div style="width: 100%" align="left" class="titulos"><h:outputText
+						value="#{msg.admin_titulo_sinautorizacion}" /></div>
+				</h:panelGroup>
+				<h:panelGroup>
+					<div style="height: 5px;" />
+				</h:panelGroup>
+				<h:panelGroup>
+					<div style="height: 300px;"  >
+							<h1 class="txtUnoAlerta">No esta autorizado para usar la aplicación #{param.app}, por favor comuniquese con el administrador para que le asigne los permisos necesarios.</h1>
+					</div>
+				</h:panelGroup>
+			</h:panelGrid>
+		</f:view>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,46 @@
+<ui:composition
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+		<h:form id="#{id}">
+			<c:if test="#{!empty autoSaveBean}">
+				<h:outputLink id="btnAutoSave_" >
+					<a:support event="onclick" oncomplete="onCompleteAutoSave()"
+						 reRender="#{id},redirect" action="#{autoSaveBean[autoSaveMethod]}">
+						 <a:actionparam name="message" value="" assignTo="#{autoSaveUtil.message}"  />
+					</a:support>
+				</h:outputLink>
+				<a:jsFunction name="changeDestination" action="#{autoSaveUtil.redirect()}" ajaxSingle="true">
+		    		<a:actionparam name="destination" assignTo="#{autoSaveUtil.destination}"  />    
+		 		</a:jsFunction>
+				<a:jsFunction name="autoSaveDummy" actionListener="#{autoSaveUtil.redirect}" ajaxSingle="true"
+					oncomplete="sendAction()" reRender="redirect">   
+		 		</a:jsFunction>
+		
+				<script>
+					function onCompleteAutoSave(){
+						var result = #{rich:element('redirect:autoSaveResult')}.value;
+						if(result=="true"){
+							if(autoSaveMethod=="path"){
+								changeDestination(path)
+							}else if(autoSaveMethod=="action"){
+								autoSaveDummy();
+							}
+						}
+					}
+			    	isAutoSaveForm = true;
+			    	saveButton="#{id}:btnAutoSave_";
+			    	Event.observe(document.#{id}, 'change', function(event) {
+			    		changed = true;
+					});
+				</script>
+				
+			</c:if>
+			<ui:insert/>
+		</h:form>	
+</ui:composition>

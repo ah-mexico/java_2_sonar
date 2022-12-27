@@ -1,0 +1,140 @@
+<ui:composition
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	
+	<style>
+	<!--	
+	#sddm
+	{	margin: 0;
+		padding: 0;
+		z-index: 30 }
+	
+	#sddm li
+	{	margin: 0;
+		padding: 0;
+		list-style: none;
+		float: left;
+		font: bold 11px arial
+		color:#616161;
+		 }
+
+	#sddm div
+	{	position: absolute;
+		visibility: hidden;		
+		margin-right: 15px;
+		padding-right: 10px;
+		background: #C6E0F1;
+		border: 1px solid #AAC9E5 }
+	-->
+	</style> 
+	
+	<script type="text/javascript" language="JavaScript">
+	<!--
+	
+	function toggleDiv( id ) {
+		//alert( 'id div: ' + id );		
+		div = document.getElementById( id );
+		div.style.visibility = (div.style.visibility == 'hidden')? 'visible': 'hidden';
+	}
+	
+	
+	function toggleImg( id ) {
+		//alert( 'id img: ' + id );
+		img = document.getElementById( id );		
+		if( img.src.indexOf( 'im_Alarmas_Desplegar.png' ) != -1 ) {
+			img.src = '#{facesContext.externalContext.requestContextPath}/img/im_Alarmas_Recoger.png';
+		} else {
+			img.src = '#{facesContext.externalContext.requestContextPath}/img/im_Alarmas_Desplegar.png';
+		}
+	}
+  	
+  	--> 	
+	</script>
+	
+	<c:if test="#{empty id}">
+    	<c:set var="id" value="idSliderBanner" />
+   	</c:if>
+	
+	<c:set var="idDivDespliega" value="#{id}DivDespliega" />
+	<c:set var="idDivRecoge" value="#{id}DivRecoge" />
+	<c:set var="idDivDropDown" value="#{id}DivDropDown" />
+	<c:set var="idMarquee" value="#{id}Marquee" />
+	
+	<c:if test="#{empty dir}">
+    	<c:set var="dir" value="left" />
+   	</c:if>
+   	<c:if test="#{empty width}">
+    	<c:set var="width" value="150" />
+   	</c:if>
+   	<c:if test="#{empty ajaxRendered}">
+    	<c:set var="ajaxRendered" value="false" />
+   	</c:if>
+   	<c:if test="#{empty delay}">
+    	<c:set var="delay" value="100" />
+   	</c:if>
+   	
+   	
+	
+	<div class="#{styleClass}">
+		<div>
+		
+			<div>
+				<ul id="sddm">
+					<li>
+						<marquee id="#{idMarquee}" behavior="scroll" 
+				   			 direction="#{dir}"
+							 onmouseover="this.stop();" 
+							 onmouseout="this.start();" 
+							 width="#{width}"
+							 scrolldelay="#{delay}"
+							 scrollAmount="4">
+							
+				 			<a:outputPanel ajaxRendered="#{ajaxRendered}">
+				 			
+								<c:if test="#{not empty items}">
+									<c:forEach items="#{items}" var="sentence">
+										<h:outputText styleClass="scrollAlarmas" value="#{sentence}"/>
+									</c:forEach>
+								</c:if>
+								<c:if test="#{empty items}">
+									<ui:insert />
+								</c:if>
+								
+							</a:outputPanel>	
+							
+						</marquee>
+						
+						
+						<c:if test="#{not empty items}">
+						<div id="#{idDivDropDown}" style="position: absolute;visibility: hidden;width: auto;background: #FFD5AA;border: 1px solid #FFAD5B; margin: 5px;padding: 5px;">
+							<c:forEach items="#{items}" var="sentence">
+								<h:outputText value="#{sentence}" />
+				 				<br/>
+							</c:forEach>
+						</div>
+						</c:if>
+					</li>
+				</ul>	
+			</div>
+		
+			<c:if test="#{not empty items}">
+			<div>
+				<h:graphicImage
+						id="#{idDivDespliega}" 
+						value="/img/im_Alarmas_Desplegar.png" 
+						onclick="toggleImg( '#{rich:clientId( idDivDespliega )}' );toggleDiv( '#{idDivDropDown}' );" style="margin-top: 8px;"/>
+					
+			</div>
+			</c:if>
+			
+		</div>
+	</div>	
+	
+   
+</ui:composition>

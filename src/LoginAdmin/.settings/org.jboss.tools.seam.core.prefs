@@ -1,0 +1,17 @@
+#Fri Oct 28 10:18:34 COT 2011
+action.package=com.colsanitas.loginadmin.session
+action.sources=/LoginAdmin-ejb/ejbModule
+eclipse.preferences.version=1
+model.package=com.colsanitas.loginadmin.entity
+model.sources=/LoginAdmin-ejb/ejbModule
+seam.ear.project=LoginAdmin-ear
+seam.ejb.project=LoginAdmin-ejb
+seam.project.connection.profile=New Oracle
+seam.project.deployment.type=ear
+seam.project.settings.version=1.1
+seam.project.web.root.folder=/LoginAdmin/WebContent
+seam.runtime.name=seam
+seam.test.creating=false
+seam.test.project=LoginAdmin-test
+test.package=org.domain.loginadmin.test
+test.sources=/LoginAdmin-test/test-src

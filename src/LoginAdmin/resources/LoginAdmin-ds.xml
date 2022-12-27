@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+<datasources>
+    <local-tx-datasource>
+      <jndi-name>LoginAdminDatasource</jndi-name>
+      <connection-url>jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST=srvdesa01)(PORT=1521)))(CONNECT_DATA=(SID = dtsbd07)))</connection-url>
+      <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+      <min-pool-size>1</min-pool-size>
+      <max-pool-size>20</max-pool-size>
+      <security-domain>EncryptDBPasswordAUTH</security-domain>
+      <exception-sorter-class-name>org.jboss.resource.adapter.jdbc.vendor.OracleExceptionSorter</exception-sorter-class-name>
+   </local-tx-datasource>
+</datasources>
+-->
+<datasources>
+    <local-tx-datasource>
+      <jndi-name>LoginAdminDatasource</jndi-name>
+      <connection-url>jdbc:oracle:thin:@srvvdesabd-scan:1521/dtsbd07</connection-url>
+      <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+      <min-pool-size>1</min-pool-size>
+      <max-pool-size>50</max-pool-size>
+      <user-name>usbd07</user-name>
+      <password>Desarrollo2019LA</password>
+      <new-connection-sql>select sysdate from dual</new-connection-sql>
+      <check-valid-connection-sql>select sysdate from dual</check-valid-connection-sql>     
+   </local-tx-datasource>
+</datasources>

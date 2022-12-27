@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="1.2" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
+	<validator>
+		<validator-id>loginAdmin.regexValidator</validator-id>
+		<validator-class>com.colsanitas.loginadmin.util.validator.RegexValidator</validator-class>
+		<attribute>
+			<attribute-name>regex</attribute-name>
+			<attribute-class>java.lang.String</attribute-class>
+		</attribute>
+		<attribute>
+			<attribute-name>invalidMessage</attribute-name>
+			<attribute-class>java.lang.String</attribute-class>
+		</attribute>
+	</validator>
+	<validator>
+		<validator-id>loginAdmin.emailValidator</validator-id>
+		<validator-class>com.colsanitas.loginadmin.util.validator.EmailValidator</validator-class>
+	</validator>
+	<validator>
+		<validator-id>loginAdmin.LoginValidator</validator-id>
+		<validator-class>com.colsanitas.loginadmin.util.validator.LoginValidator</validator-class>
+	</validator>
+	<application>
+		<view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+		<locale-config>
+			<default-locale>es</default-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>messages</base-name>
+			<var>msg</var>
+		</resource-bundle>
+	</application>
+</faces-config>

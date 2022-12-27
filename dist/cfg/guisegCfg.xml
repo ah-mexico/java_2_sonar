@@ -1,0 +1,18 @@
+<cfg>
+  <!-- Opciones JNP -->
+  <item name="java.naming.factory.initial" description="Factory JNP" 
+  	value="org.jnp.interfaces.NamingContextFactory" />
+  <item name="java.naming.provider.url" description="JNP Provider" 
+  	value="localhost:1499" />  
+  <item name="java.naming.factory.url.pkgs" description="JNP URL packages" 
+  	value="org.jboss.naming:org.jnp.interfaces" />
+  <item name="jndi.ejb.authentication" description="JNDI EJB de authentication" 
+  	value="AuthenticationV2/Authentication/remote" />
+  	
+  	
+  <item name="applicationName" description="Nombre de la aplicacion"  value="GUIAuthorization" />
+  <item name="wsdlAuthentication" description="Parametro generado automaticamente" value="http://anteo.colsanitas.com:8580/Gaudi-Services/Authentication?WSDL" />
+  <item name="urlLoginAdminLabel" description="Label para colocar en el menu y poder volver a loginadmin"  value="Administrar usuarios" />
+  <item name="urlLoginAdmin" description="Url de LoginAdmin"  value="http://pappcore.colsanitas.com/LoginAdmin" />
+  	
+</cfg>

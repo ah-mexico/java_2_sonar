@@ -1,0 +1,97 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:rich="http://richfaces.org/rich">
+	
+	<script type="text/javascript" language="javascript">
+		function refrescarPag(url) {
+			window.location.href=url;
+		}
+	</script>
+
+	<c:set var="disableButtons" value="#{empty disableButtons ? false : disableButtons}" />
+	<div align="center">
+	<h:panelGrid columns="7" border="0" cellpadding="2">
+		<h:panelGroup rendered="#{!crudTableBean.isDisabled(elementIndex) and identity.hasRole(msg.permiso_crear_usuario)}">
+			<a:commandButton id="ctlGuardar" styleClass="botonGuardarNivelDos"
+				action="#{crudTableBean.save(element, elementIndex)}"
+				disabled="#{disableButtons}" ajaxSingle="false"
+				bypassUpdates="false" reRender="#{reRender}"
+				eventsQueue="crudTablebuttons" ignoreDupResponses="true"/>
+			<rich:toolTip for="ctlGuardar" styleClass="ToolTipUno"
+				direction="top-left" followMouse="true" horizontalOffset="4">
+				<h:outputText value="#{msg.guardar}" escape="false" />
+			</rich:toolTip>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{!crudTableBean.isDisabled(elementIndex)}">
+			<a:commandButton id="ctlCancelar" styleClass="botonCancelarNivelDos"
+				ajaxSingle="true" bypassUpdates="false" reRender="#{reRender}"
+				disabled="#{disableButtons}"
+				action="#{crudTableBean.cancel(elementIndex)}"
+				eventsQueue="crudTablebuttons" ignoreDupResponses="true"
+				oncomplete="#{onCancelCompleted}" />
+			<rich:toolTip for="ctlCancelar" styleClass="ToolTipUno"
+				direction="top-left" followMouse="true" horizontalOffset="4">
+				<h:outputText value="#{msg.cancelar}" escape="false" />
+			</rich:toolTip>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{crudTableBean.isDisabled(elementIndex) and identity.hasRole(msg.permiso_modificar_usuario)}">
+			<a:commandButton id="ctlEditar" styleClass="botonModificarNivelDos"
+				action="#{crudTableBean.edit(elementIndex)}" ajaxSingle="true"
+				bypassUpdates="false" reRender="#{reRender}"
+				oncomplete="focus(#{elementIndex});" eventsQueue="crudTablebuttons"
+				disabled="#{disableButtons}" ignoreDupResponses="true"/>
+			<rich:toolTip for="ctlEditar" styleClass="ToolTipUno"
+				direction="top-left" followMouse="true" horizontalOffset="4">
+				<h:outputText value="#{msg.editar}" escape="false" />
+			</rich:toolTip>
+		</h:panelGroup>
+		<h:panelGroup rendered="#{crudTableBean.isDisabled(elementIndex) and identity.hasRole(msg.permiso_autorizar_administrador) and !element.adminOsi  }">
+				<a:commandButton id="ctlAutorizarAdmin" ajaxSingle="true"
+					disabled="#{disableButtons}"
+					styleClass="botonAutorizaPrestadNivelDos"
+					reRender="#{idPanelInclude}" eventsQueue="crudTablebuttons"
+
+					ignoreDupResponses="true"
+					action="#{crudTableBean.cargarAutAdmin(element)}"
+					oncomplete=" Richfaces.showModalPanel('#{idRichModalPanelAutAdmin}');"/>
+					<rich:toolTip for="ctlAutorizarAdmin" styleClass="ToolTipUno" direction="top-left" followMouse="true" horizontalOffset="4" >
+						<h:outputText value="#{msg.autorizarAdmin}" escape="false" />
+					</rich:toolTip>
+			</h:panelGroup>
+			<h:panelGroup rendered="#{crudTableBean.isDisabled(elementIndex) and identity.hasRole(msg.permiso_autorizar_delegado)}">
+				<a:commandButton id="ctlAutorizarDele" ajaxSingle="true"
+					disabled="#{disableButtons}"
+					styleClass="botonAutorizaDelegaNivelDos"
+					reRender="#{idPanelInclude}" eventsQueue="crudTablebuttons"
+					ignoreDupResponses="true"
+					action="#{crudTableBean.cargarAutDele(element)}"
+					oncomplete="Richfaces.showModalPanel('#{idRichModalPanelAutDele}'); ">
+					 
+				</a:commandButton>
+					<rich:toolTip for="ctlAutorizarDele" styleClass="ToolTipUno" direction="top-left" followMouse="true" horizontalOffset="4" >
+						<h:outputText value="#{msg.autorizarDele}" escape="false" />
+					</rich:toolTip>
+								</h:panelGroup>
+		<h:panelGroup rendered="#{useModalDetalle and crudTableBean.isDisabled(elementIndex)}">
+			<a:commandButton id="btnMostrarModalDetalle" ajaxSingle="true"
+				styleClass="botonAsociarServicioNivelDos"
+				action="#{crudTableBean.seleccionar(element)}"
+				reRender="#{idPanelInclude}" eventsQueue="crudTablebuttons"
+				ignoreDupResponses="true"
+				oncomplete="Richfaces.showModalPanel('#{idRichModalPanel}');">
+			</a:commandButton>
+			<rich:toolTip for="btnMostrarModalDetalle" styleClass="ToolTipUno"
+				direction="top-left" followMouse="true" horizontalOffset="4">
+				<h:outputText value="#{toolTipModalPanel}" escape="false" />
+			</rich:toolTip>
+		</h:panelGroup>
+
+	</h:panelGrid></div>
+
+
+</ui:composition>

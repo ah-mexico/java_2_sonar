@@ -1,0 +1,18 @@
+<ui:component xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:his="http://his.colsanitas.osi.com/jsf"
+      xmlns:rich="http://richfaces.org/rich">
+      
+	<h:panelGrid border="0" columns="1" width="98%" cellpadding="0" cellspacing="0">
+		<h:panelGroup>
+			<ui:insert name="input"/>
+		</h:panelGroup>
+		<h:panelGroup>
+			<rich:message for="#{id}" errorClass="message" warnClass="message" tooltip="true" showDetail="false" showSummary="true"/>
+		</h:panelGroup>
+	</h:panelGrid>
+	
+</ui:component>

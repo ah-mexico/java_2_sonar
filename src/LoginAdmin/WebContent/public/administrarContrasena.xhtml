@@ -1,0 +1,291 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:his="http://colsanitas.com/jsf/facelets"
+	template="../layout/template.xhtml">
+
+	<ui:define name="contenido">
+		<f:view>
+			<script type="text/javascript" language="javascript">
+			document.oncontextmenu = new Function ("return false");
+				
+					
+				function limpiarComponente() {
+					//refrescarMsg();
+					if( #{rich:element('usuario')} != null ) {
+						#{rich:element('usuario')}.value = "";
+					}
+					if( #{rich:element('claveActual')} != null ) {
+						#{rich:element('claveActual')}.value = "";
+					}
+					if( #{rich:element('claveNueva')} != null ) {
+						#{rich:element('claveNueva')}.value = "";
+					}
+					if( #{rich:element('confirmarClave')} != null ) {
+						#{rich:element('confirmarClave')}.value = "";
+					}
+				}
+
+				function limpiarComponenteRec() {
+					if( #{rich:element('usuarioRecordar')} != null ) {
+						#{rich:element('usuarioRecordar')}.value = "";
+					}
+				}
+			</script>
+			<script
+				src="#{facesContext.externalContext.requestContextPath}/js/util.js"
+				type="text/javascript">
+			</script>
+			<h:panelGrid columns="1" width="100%" border="0">
+				<h:panelGroup>
+					<div style="width: 100%" align="left" class="titulos">
+						<h:outputText
+							value="#{msg.admin_clave_titulo_administrarContrasena}" />
+					</div>
+				</h:panelGroup>
+				<h:panelGroup>
+					<div style="height: 5px;" />
+				</h:panelGroup>
+				<h:panelGrid columns="2" width="100%" border="0">
+					<h:panelGroup id="pgCambiarPassword">
+						<a:form id="formAdminPassword">
+							<a:region renderRegionOnly="false" id="regionFormCambiarClave">
+								<his:progressBar id="prFormAdminPass"
+									idRegion="regionFormCambiarClave" />
+								<h:panelGrid columns="1">
+									<h:panelGroup>
+										<h:panelGrid columns="1" width="100%" border="0">
+											<h:panelGroup>
+												<div class="tituloAdminClave lineadivisionN"
+													style="width: 100%;">
+													<h:outputText value="#{msg.admin_clave_sub_cambiarCalve}" />
+												</div>
+											</h:panelGroup>
+											<h:panelGroup>
+												<h:outputText value="#{msg.campoRequerido}"
+													styleClass="txtCampoRequerido" />
+												<span class="asteriscoRequerido">*</span>
+											</h:panelGroup>
+										</h:panelGrid>
+									</h:panelGroup>
+									<h:panelGroup id="pgMsgCambiarPwd">
+										<h:outputText rendered="#{param.obliga}"
+											styleClass="txtUnoAlerta"
+											value="#{msg.obligadoCambioDeClave}" escape="false" />
+										<br />
+										<br />
+										<rich:message for="formAdminPassword" var="messages"
+											errorClass="txtUnoError" warnClass="txtUnoAlerta"
+											infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<h:panelGrid columns="3" cellpadding="3" cellspacing="2"
+											border="0">
+											<h:panelGroup>
+												<h:outputText value="#{msg.admin_clave_usuarioClave}:"
+													styleClass="txtCampoRequerido" />
+												<span class="asteriscoRequerido">*</span>
+											</h:panelGroup>
+											<h:panelGroup>
+												<div style="width: 5px;" />
+											</h:panelGroup>
+											<h:panelGroup>
+												<his:inputText jsfc="his:inputText" id="usuario"
+													onkeydown="return DisableCtrlKey(event);"
+													onkeyup="return DisableCtrlKey(event);"
+													styleClass="cajaSimple" size="42" maxlength="64"
+													required="true" immediate="true"
+													value="#{administrarPasswordWeb.usuario}">
+													<!-- <f:validator validatorId="loginAdmin.emailValidator" /> -->
+												</his:inputText>
+											</h:panelGroup>
+											<h:panelGroup>
+												<h:outputText value="#{msg.admin_clave_claveActual}:"
+													styleClass="txtCampoRequerido" />
+												<span class="asteriscoRequerido">*</span>
+											</h:panelGroup>
+											<h:panelGroup>
+											</h:panelGroup>
+											<h:panelGroup>
+												<his:inputSecret id="claveActual" jsfc="his:inputSecret"
+													onkeydown="return DisableCtrlKey(event);"
+													onkeyup="return DisableCtrlKey(event);"
+													value="#{administrarPasswordWeb.claveActual}"
+													styleClass="cajaSimple" size="42" maxlength="32"
+													required="true" immediate="true" />
+											</h:panelGroup>
+											<h:panelGroup>
+												<h:outputText value="#{msg.admin_clave_claveNueva}:"
+													styleClass="txtCampoRequerido" />
+												<span class="asteriscoRequerido">*</span>
+											</h:panelGroup>
+											<h:panelGroup>
+											</h:panelGroup>
+											<h:panelGroup>
+												<his:inputSecret id="claveNueva" jsfc="his:inputSecret"
+													onkeydown="return DisableCtrlKey(event);"
+													onkeyup="return DisableCtrlKey(event);"
+													value="#{administrarPasswordWeb.claveNueva}"
+													styleClass="cajaSimple" size="42" maxlength="32"
+													required="true" immediate="true" />
+											</h:panelGroup>
+											<h:panelGroup>
+												<h:outputText value="#{msg.admin_clave_confirmarClave}:"
+													styleClass="txtCampoRequerido" />
+												<span class="asteriscoRequerido">*</span>
+											</h:panelGroup>
+											<h:panelGroup>
+											</h:panelGroup>
+											<h:panelGroup>
+												<his:inputSecret id="confirmarClave" jsfc="his:inputSecret"
+													onkeydown="return DisableCtrlKey(event);"
+													onkeyup="return DisableCtrlKey(event);"
+													value="#{administrarPasswordWeb.confirmarClave}"
+													styleClass="cajaSimple" size="42" maxlength="32"
+													required="true" immediate="true" />
+											</h:panelGroup>
+											<h:panelGroup>
+											</h:panelGroup>
+											<h:panelGroup>
+											</h:panelGroup>
+											<h:panelGrid columns="2" cellpadding="1" cellspacing="1"
+												border="0">
+												<h:panelGroup>
+													<a:commandButton id="guardar"
+														styleClass="botonNCambiarNivelUno"
+														style="width:122px; height: 32px;"
+														action="#{administrarPasswordWeb.actualizaPassword}"
+														reRender="sessionModAdminLogin"
+														oncomplete="if (#{facesContext.maximumSeverity==null}){ Richfaces.showModalPanel('pnlRespuestaLoginAdmin') }" />
+													<rich:toolTip for="guardar" styleClass="ToolTipUno"
+														direction="top-left" followMouse="true"
+														horizontalOffset="4">
+														<h:outputText value="#{msg.guardar}" escape="false" />
+													</rich:toolTip>
+												</h:panelGroup>
+												<h:panelGroup>
+													<a:commandButton id="limpiar"
+														styleClass="botonNLimpiarNivelUno"
+														style="width:109px; height: 32px;" ajaxSingle="true"
+														immediate="true" onclick="limpiarComponente();" />
+													<rich:toolTip for="limpiar" styleClass="ToolTipUno"
+														direction="top-left" followMouse="true"
+														horizontalOffset="4">
+														<h:outputText value="#{msg.limpiar}" escape="false" />
+													</rich:toolTip>
+												</h:panelGroup>
+											</h:panelGrid>
+										</h:panelGrid>
+									</h:panelGroup>
+								</h:panelGrid>
+							</a:region>
+						</a:form>
+					</h:panelGroup>
+					<h:panelGroup id="pgRecordarClave">
+						<a:form id="formRecordarClave">
+							<a:region renderRegionOnly="false" id="regionFormRecordarClave">
+								<his:progressBar id="prFormRecordarClave"
+									idRegion="regionFormRecordarClave" />
+								<div class="fondoRecordarClave">
+									<h:panelGrid columns="1">
+										<h:panelGroup>
+											<h:panelGrid columns="1" width="100%" border="0">
+												<h:panelGroup>
+													<div class="tituloAdminClave lineadivisionN"
+														style="width: 100%">
+														<h:outputText value="#{msg.admin_clave_sub_recordarClave}" />
+													</div>
+												</h:panelGroup>
+												<h:panelGroup>
+													<h:outputText value="#{msg.campoRequerido}"
+														styleClass="txtCampoRequerido" />
+													<span class="asteriscoRequerido">*</span>
+												</h:panelGroup>
+											</h:panelGrid>
+										</h:panelGroup>
+										<h:panelGroup>
+											<div style="height: 25px;"></div>
+										</h:panelGroup>
+										<h:panelGroup>
+											<rich:message for="formRecordarClave" var="messages"
+												errorClass="txtUnoError" warnClass="txtUnoAlerta"
+												infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+										</h:panelGroup>
+										<h:panelGroup>
+											<h:panelGrid columns="3" cellpadding="3" cellspacing="2"
+												border="0">
+												<h:panelGroup>
+													<h:outputText value="#{msg.admin_clave_usuarioClave}:"
+														styleClass="txtCampoRequerido" />
+													<span class="asteriscoRequerido">*</span>
+												</h:panelGroup>
+												<h:panelGroup>
+												</h:panelGroup>
+												<h:panelGroup>
+													<his:inputText jsfc="his:inputText" id="usuarioRecordar"
+														onkeydown="return DisableCtrlKey(event);"
+														onkeyup="return DisableCtrlKey(event);"
+														styleClass="cajaSimple" size="42" maxlength="64"
+														required="true" immediate="true"
+														value="#{administrarPasswordWeb.usuario}">
+														<!-- <f:validator validatorId="loginAdmin.emailValidator" /> -->
+													</his:inputText>
+												</h:panelGroup>
+												<h:panelGroup>
+												</h:panelGroup>
+												<h:panelGroup>
+												</h:panelGroup>
+												<h:panelGrid columns="2" cellpadding="2" cellspacing="2"
+													border="0">
+													<h:panelGroup>
+														<a:commandButton id="enviar"
+															styleClass="botonNRecordarNivelUno"
+															style="width:122px; height: 32px;"
+															reRender="sessionModAdminLogin"
+															action="#{administrarPasswordWeb.recordarPassword}"
+															oncomplete="if (#{facesContext.maximumSeverity==null}){ Richfaces.showModalPanel('pnlRespuestaRecordarLoginAdmin') }" />
+														<rich:toolTip for="enviar" styleClass="ToolTipUno"
+															direction="top-left" followMouse="true"
+															horizontalOffset="4">
+															<h:outputText
+																value="#{msg.admin_clave_enviarRecordacionClave}"
+																escape="false" />
+														</rich:toolTip>
+													</h:panelGroup>
+													<h:panelGroup>
+														<a:commandButton id="limpiarClave"
+															styleClass="botonNLimpiarNivelUno"
+															style="width:109px; height: 32px;" ajaxSingle="true"
+															immediate="true" onclick="limpiarComponenteRec();" />
+														<rich:toolTip for="limpiarClave" styleClass="ToolTipUno"
+															direction="top-left" followMouse="true"
+															horizontalOffset="4">
+															<h:outputText value="#{msg.limpiar}" escape="false" />
+														</rich:toolTip>
+													</h:panelGroup>
+												</h:panelGrid>
+											</h:panelGrid>
+										</h:panelGroup>
+									</h:panelGrid>
+								</div>
+							</a:region>
+						</a:form>
+					</h:panelGroup>
+				</h:panelGrid>
+			</h:panelGrid>
+			<h:panelGroup id="sessionModAdminLogin">
+				<a:include viewId="../modales/modalRespuestaAdminLogin.xhtml"
+					id="includeModRespuestaAdminLogin" />
+				<a:include
+					viewId="../modales/modalRespuestaRecordarAdminLogin.xhtml"
+					id="includeModRespuestaRecordarAdminLogin" />
+			</h:panelGroup>
+		</f:view>
+	</ui:define>
+</ui:composition>

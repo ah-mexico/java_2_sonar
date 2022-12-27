@@ -1,0 +1,781 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:his="http://colsanitas.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="../layout/template.xhtml">
+
+	<ui:define name="contenido">
+		<f:view>
+			<script type="text/javascript" language="javascript">
+			function clickRadio (radio) {
+				for (i=0; i &lt; document.getElementsByTagName('input').length; i++) {
+					if (document.getElementsByTagName('input')[i].type == 'radio' &amp;&amp; 
+						document.getElementsByTagName('input')[i].id != radio.id) {
+						document.getElementsByTagName('input')[i].checked=false;
+					}
+				}
+			}
+		</script>
+			<a:form id="formConsulUser">
+				<a:region renderRegionOnly="false" id="regionFormConsulUser">
+					<his:progressBar id="prFormRegAdmin"
+						idRegion="regionFormConsulUser" />
+					<rich:message for="formConsulUser" var="messages"
+						errorClass="txtUnoError" warnClass="txtUnoAlerta"
+						infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+					<h:panelGroup>
+						<div style="height: 5px" />
+					</h:panelGroup>
+					<h:panelGrid columns="1" width="100%" border="0"
+						rendered="#{identity.hasRole(msg.permiso_consultar_usuario)}">
+						<h:panelGroup>
+							<div style="width: 99%" align="left" class="titulos">
+								<h:outputText
+									value="#{msg.consul_usuario_titulo_consultarUsuario}" />
+							</div>
+						</h:panelGroup>
+						<h:panelGroup id="pgMsgSelUser">
+							<rich:message for="pgMsgSelUser" var="messages"
+								errorClass="txtUnoError" warnClass="txtUnoAlerta"
+								infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+						</h:panelGroup>
+						<h:panelGroup id="pgBusqUser">
+							<a:region renderRegionOnly="false" id="regionBusqUser">
+								<his:progressBar id="prBusqUser" idRegion="regionBusqUser" />
+								<rich:message for="pgBusqUser" var="messages"
+									errorClass="txtUnoError" warnClass="txtUnoAlerta"
+									infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+								<h:panelGrid columns="1" border="0" cellpadding="0" width="100%"
+									cellspacing="0">
+									<h:panelGroup>
+										<div align="left" class="subSec">
+											<h:outputText value="#{msg.cons_usua_filtro_bus}" />
+										</div>
+									</h:panelGroup>
+									<h:panelGroup>
+										<div style="height: 10px;" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<h:panelGrid columns="1" border="0" width="100%"
+											cellpadding="0" cellspacing="0">
+											<h:panelGroup>
+												<div align="left" class="txtCampoRequerido">
+													<h:outputText value="#{msg.reg_admin_sel_pres}" />
+												</div>
+											</h:panelGroup>
+											<h:panelGroup>
+												<div style="height: 5px;" />
+											</h:panelGroup>
+											<h:panelGroup>
+												<div style="height: 10px;" />
+											</h:panelGroup>
+											<h:panelGroup id="pgFinderPrestLocal">
+												<h:panelGrid columns="3" border="0" cellpadding="0"
+													cellspacing="0">
+													<h:panelGroup>
+														<h:outputText value="#{msg.prestador}:"
+															styleClass="txtCampoRequerido" />
+													</h:panelGroup>
+													<h:panelGroup>
+														<div style="width: 5px;" />
+													</h:panelGroup>
+													<h:panelGroup
+														rendered="#{!identity.hasRole(msg.permiso_autorizar_administrador)}">
+														<his:selectOneMenu styleClass="combo" style="width:400px;"
+															id="prestadorSel" required="true"
+															value="#{consultarUsuarioWeb.prestadorLocalSelectedID}"
+															jsfc="his:selectOneMenu">
+															<f:selectItems value="#{consultarUsuarioWeb.listPres}" />
+														</his:selectOneMenu>
+													</h:panelGroup>
+													<h:panelGroup
+														rendered="#{identity.hasRole(msg.permiso_autorizar_administrador)}">
+														<his:finder id="finderPrestLocal"
+															bean="#{consultarUsuarioWeb.prestadorLocalFinder}"
+															showValueBox="true" valueMaxlength="32"
+															labelMaxlength="50"
+															value="#{consultarUsuarioWeb.prestadorLocalSelected}"
+															onChoice="#{rich:element('outputLinkPrestLocal')}.onclick();"
+															rows="2" labelStyle="height:35px; width:530px;"
+															width="520" refreshObjectOnLabel="true" valueSize="15" />
+														<h:outputLink value="" id="outputLinkPrestLocal">
+															<a:support event="onclick"
+																actionListener="#{consultarUsuarioWeb.prestadorSeleccionado}"
+																ajaxSingle="true" />
+														</h:outputLink>
+													</h:panelGroup>
+												</h:panelGrid>
+											</h:panelGroup>
+										</h:panelGrid>
+									</h:panelGroup>
+									<h:panelGroup>
+									</h:panelGroup>
+									<h:panelGroup>
+									</h:panelGroup>
+									<h:panelGroup>
+										<div style="width: 99%" align="left" class="txtCampoRequerido">
+											<h:outputText value="#{msg.consul_usuario_seleccion}" />
+										</div>
+									</h:panelGroup>
+									<h:panelGroup>
+										<br />
+									</h:panelGroup>
+									<h:panelGroup>
+										<h:panelGrid columns="1" border="0" width="100%">
+											<h:panelGroup>
+												<h:panelGrid columns="5" border="0">
+													<h:panelGroup>
+														<div class="txtTituloNegrilla">
+															<h:outputText value="#{msg.tipo_num_identificacion}:"
+																escape="false" />
+															<h:outputText value="*" styleClass="asteriscoRequerido" />
+														</div>
+													</h:panelGroup>
+													<h:panelGroup>
+														<h:panelGrid columns="3" border="0" cellpadding="0"
+															cellspacing="0">
+															<h:panelGroup>
+																<his:selectOneMenu styleClass="combo"
+																	style="width:70px;" id="tipoDocUserBusq"
+																	value="#{consultarUsuarioWeb.tipoDocBusq}"
+																	jsfc="his:selectOneMenu">
+																	<f:selectItems
+																		value="#{consultarUsuarioWeb.listTipoDocs}" />
+																</his:selectOneMenu>
+															</h:panelGroup>
+															<h:panelGroup>
+																<div style="width: 5px;" />
+															</h:panelGroup>
+															<h:panelGroup>
+																<his:inputText id="numDocUser" jsfc="his:inputText"
+																	value="#{consultarUsuarioWeb.numeroDocBusq}" size="24"
+																	maxlength="30" styleClass="cajaSimple" />
+															</h:panelGroup>
+														</h:panelGrid>
+													</h:panelGroup>
+													<h:panelGroup>
+														<div style="width: 33px;" />
+													</h:panelGroup>
+													<h:panelGroup>
+														<h:outputText value="#{msg.nombre}:"
+															styleClass="txtCampoRequerido" />
+													</h:panelGroup>
+													<h:panelGroup>
+														<his:inputText jsfc="his:inputText"
+															value="#{consultarUsuarioWeb.nombreBusq}" id="loginUser"
+															styleClass="cajaSimple" maxlength="64" size="40"
+															style="width:170px;" immediate="true">
+														</his:inputText>
+													</h:panelGroup>
+													<h:panelGroup>
+														<h:outputText value="#{msg.email}:"
+															styleClass="txtCampoRequerido" />
+													</h:panelGroup>
+													<h:panelGroup>
+														<his:inputText jsfc="his:inputText"
+															value="#{consultarUsuarioWeb.emailBusq}"
+															id="userMailBusq" styleClass="cajaSimple" maxlength="64"
+															size="35" immediate="true">
+															<f:validator validatorId="loginAdmin.emailValidator" />
+														</his:inputText>
+													</h:panelGroup>
+													<h:panelGroup>
+														<div style="width: 47px;" />
+													</h:panelGroup>
+													<h:panelGroup>
+													</h:panelGroup>
+													<h:panelGroup>
+														<div align="right" style="width: 97%;">
+															<a:commandButton styleClass="botonBuscarNivelUno"
+																id="busqUser"
+																action="#{consultarUsuarioWeb.buscarUsuarios}"
+																disabled="#{consultarUsuarioWeb.editando}"
+																reRender="pgDataListUser, pgListRelUser"
+																rendered="#{identity.hasRole(msg.permiso_consultar_usuario)}" />
+														</div>
+													</h:panelGroup>
+												</h:panelGrid>
+											</h:panelGroup>
+										</h:panelGrid>
+									</h:panelGroup>
+								</h:panelGrid>
+							</a:region>
+						</h:panelGroup>
+					</h:panelGrid>
+					<h:panelGroup>
+					</h:panelGroup>
+					<h:panelGroup>
+						<div style="height: 2px" />
+					</h:panelGroup>
+					<h:panelGroup>
+						<h:panelGrid columns="1" width="100%" border="0" cellpadding="3"
+							cellspacing="3">
+							<h:panelGroup>
+								<h:outputText value="#{msg.consul_usuario_siNoseEncuentra}"
+									styleClass="textogeneral" />
+							</h:panelGroup>
+						</h:panelGrid>
+					</h:panelGroup>
+					<h:panelGroup>
+						<rich:message for="pgDataListUser" var="messages"
+							errorClass="txtUnoError" warnClass="txtUnoAlerta"
+							infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+					</h:panelGroup>
+					<h:panelGroup id="pgDataListUser"
+						rendered="#{identity.hasRole(msg.permiso_consultar_usuario)}">
+						<a:region renderRegionOnly="false" id="regionDataListUser">
+							<his:progressBar id="prBusqUser" idRegion="regionDataListUser" />
+							<div align="center">
+								<h:panelGrid columns="1" border="0" cellpadding="3"
+									cellspacing="0" width="98%;">
+									<h:panelGroup>
+										<div style="height: 6px;" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<div style="width: 99%" align="left" class="subSec">
+											<h:outputText value="#{msg.admin_apli_edit_usua}" />
+										</div>
+									</h:panelGroup>
+									<h:panelGroup>
+										<div style="height: 6px;" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<rich:dataTable cellspacing="1" cellpadding="1" border="0"
+											id="dataListUser" styleClass="BordeTablasDos centrarTexto"
+											rowClasses="impar,par" rows="#{msg.rowsPerPage}"
+											style="width:100%" rowKeyVar="rowKeyVar"
+											value="#{consultarUsuarioWeb.listUser}" var="userOld">
+											<f:facet name="header">
+												<rich:columnGroup>
+													<rich:column style="width:5%">
+														<h:outputText value="#{msg.consul_usuario_verRelacion}" />
+													</rich:column>
+													<rich:column style="width:12%">
+														<h:outputText value="#{msg.consul_usuario_login}" />
+													</rich:column>
+													<rich:column style="width:19%">
+														<h:outputText value="#{msg.consul_usuario_nombre}" />
+													</rich:column>
+													<rich:column style="width:15%">
+														<h:outputText value="#{msg.consul_usuario_tipoYNoIdenti}" />
+													</rich:column>
+													<rich:column style="width:14%">
+														<h:outputText value="#{msg.email}" />
+													</rich:column>
+													<rich:column style="width:15%">
+														<h:outputText value="#{msg.expDate}" />
+													</rich:column>
+													<rich:column style="width:8%">
+														<h:outputText value="#{msg.consul_usuario_acciones}" />
+													</rich:column>
+													<rich:column breakBefore="true"
+														rendered="#{!consultarUsuarioWeb.editando}">
+													</rich:column>
+													<rich:column rendered="#{!consultarUsuarioWeb.editando}">
+														<div align="center">
+															<h:panelGrid columns="2" border="0" width="100%">
+																<h:panelGroup>
+																	<his:inputText label="descripcion" id="userIdNew"
+																		required="true" jsfc="his:inputText" maxlength="58"
+																		styleClass="cajaSimple" size="11"
+																		value="#{consultarUsuarioWeb.newVal.userLogin}">
+																		<f:validator validatorId="loginAdmin.LoginValidator" />
+																	</his:inputText>
+																</h:panelGroup>
+																<h:panelGroup>
+																	<div align="left" style="width: 2px;">
+																		<h:outputText value="*"
+																			styleClass="asteriscoRequerido" />
+																	</div>
+																</h:panelGroup>
+															</h:panelGrid>
+														</div>
+													</rich:column>
+													<rich:column rendered="#{!consultarUsuarioWeb.editando}">
+														<div align="center">
+															<h:panelGrid columns="3" border="0" width="100%">
+																<h:panelGroup>
+																	<his:inputText id="userNameNew" required="true"
+																		jsfc="his:inputText" maxlength="50"
+																		styleClass="cajaSimple" size="10"
+																		value="#{consultarUsuarioWeb.newVal.userName}">
+																		<f:validator validatorId="loginAdmin.regexValidator" />
+																		<f:attribute name="regex"
+																			value="^[a-zA-Z áéíóúAÉÍÓÚÑñ]+$" />
+																		<f:attribute name="invalidMessage"
+																			value="#{msg.validator_nombres}" />
+																	</his:inputText>
+																</h:panelGroup>
+																<h:panelGroup>
+																	<his:inputText id="userSurNameNew" required="true"
+																		jsfc="his:inputText" maxlength="50"
+																		styleClass="cajaSimple" size="10"
+																		value="#{consultarUsuarioWeb.newVal.userLastName}">
+																		<f:validator validatorId="loginAdmin.regexValidator" />
+																		<f:attribute name="regex"
+																			value="^[a-zA-Z áéíóúAÉÍÓÚÑñ]+$" />
+																		<f:attribute name="invalidMessage"
+																			value="#{msg.validator_nombres}" />
+																	</his:inputText>
+																</h:panelGroup>
+																<h:panelGroup>
+																	<div align="left" style="width: 2px;">
+																		<h:outputText value="*"
+																			styleClass="asteriscoRequerido" />
+																	</div>
+																</h:panelGroup>
+															</h:panelGrid>
+														</div>
+													</rich:column>
+													<rich:column rendered="#{!consultarUsuarioWeb.editando}">
+														<div align="center">
+															<h:panelGrid columns="3" border="0" width="100%">
+																<h:panelGroup>
+																	<his:selectOneMenu styleClass="combo"
+																		style="width:50px;" id="tipoDocUser" required="true"
+																		value="#{consultarUsuarioWeb.newVal.tipoDoc}"
+																		jsfc="his:selectOneMenu">
+																		<f:selectItems
+																			value="#{consultarUsuarioWeb.listTipoDocs}" />
+																	</his:selectOneMenu>
+																</h:panelGroup>
+																<h:panelGroup>
+																	<his:inputText label="descripcion" id="userDocumentNew"
+																		required="true" jsfc="his:inputText" maxlength="30"
+																		styleClass="cajaSimple" size="8"
+																		value="#{consultarUsuarioWeb.newVal.document}"
+																		type="DOCUMENTLOGINADMIN">
+																		<f:validator validatorId="loginAdmin.regexValidator" />
+																		<f:attribute name="regex" value="^[0-9a-zA-Z ]+$" />
+																		<f:attribute name="invalidMessage"
+																			value="#{msg.validator_documento}" />
+																	</his:inputText>
+																</h:panelGroup>
+																<h:panelGroup>
+																	<div align="left" style="width: 2px;">
+																		<h:outputText value="*"
+																			styleClass="asteriscoRequerido" />
+																	</div>
+																</h:panelGroup>
+															</h:panelGrid>
+														</div>
+													</rich:column>
+													<rich:column rendered="#{!consultarUsuarioWeb.editando}">
+														<div align="center">
+															<h:panelGrid columns="2" border="0">
+																<h:panelGroup>
+																	<his:inputText label="descripcion" id="userMailNew"
+																		required="true" jsfc="his:inputText" maxlength="64"
+																		styleClass="cajaSimple" size="16"
+																		value="#{consultarUsuarioWeb.newVal.userMail}">
+																		<f:validator validatorId="loginAdmin.emailValidator" />
+																	</his:inputText>
+																</h:panelGroup>
+																<h:panelGroup>
+																	<div align="left">
+																		<h:outputText value="*"
+																			styleClass="asteriscoRequerido" />
+																	</div>
+																</h:panelGroup>
+															</h:panelGrid>
+														</div>
+													</rich:column>
+
+													<!-- INICIO CAMBIO FECHA EXPIRACION-->
+												 	<rich:column rendered="#{!consultarUsuarioWeb.editando}">
+														<div align="center">
+															<h:panelGrid columns="3" border="0">
+																<h:panelGroup>
+																	<rich:calendar id="ctlFechaExp"
+																		value="#{consultarUsuarioWeb.newVal.expDate}"
+																		locale="es" popup="true" enableManualInput="true"
+																		showApplyButton="false" required="true"
+																		inputClass="cajaSimpleCalendario"
+																		inputStyle="width:50px" datePattern="dd/MM/yyyy">
+																		<f:validator validatorId="loginAdmin.expDateValidator" />
+																	</rich:calendar>
+																	<rich:message id="ctlErrorExp" for="ctlFechaExp"
+																		errorClass="message" warnClass="message"
+																		showDetail="fase" showSummary="true" />
+																</h:panelGroup>
+																<h:panelGroup>
+																	<div align="left">
+																		<h:outputText value="*"
+																			styleClass="asteriscoRequerido" />
+																	</div>
+																</h:panelGroup>
+															</h:panelGrid>
+														</div>
+													</rich:column>
+													<!-- FIN CAMBIO FECHA EXPIRACION-->
+
+													<rich:column rendered="#{!consultarUsuarioWeb.editando}">
+														<div align="center">
+															<his:crudTableHeaderButtons
+																crudTableBean="#{consultarUsuarioWeb}"
+																reRender="dataListUser,scrollDataTableUser, pgListRelUser"
+																disableButtons="false" />
+														</div>
+													</rich:column>
+												</rich:columnGroup>
+											</f:facet>
+											<rich:column>
+												<div align="center">
+													<h:selectOneRadio value=""
+														rendered="#{consultarUsuarioWeb.isDisabled(rowKeyVar) and consultarUsuarioWeb.isEditable(rowKeyVar)}">
+														<f:selectItem id="radioUser" itemValue="#{userOld.userId}"
+															itemLabel="" />
+														<a:support event="onclick"
+															action="#{consultarUsuarioWeb.listarRelacionesUser}"
+															onsubmit="clickRadio(this,#{rowKeyVar});"
+															ajaxSingle="true" reRender="pgListRelUser">
+															<a:actionparam value="#{userOld.userId}"
+																name="loginUserSel"
+																assignTo="#{consultarUsuarioWeb.loginUserSel}" />
+														</a:support>
+													</h:selectOneRadio>
+												</div>
+											</rich:column>
+											<rich:column>
+												<div align="left">
+													<h:panelGroup
+														rendered="#{!consultarUsuarioWeb.isDisabled(rowKeyVar)}">
+														<his:inputText label="codigo" id="userLoginOld"
+															jsfc="his:inputText" maxlength="64"
+															styleClass="cajaSimple" size="11"
+															value="#{userOld.userId}" readonly="true" />
+													</h:panelGroup>
+													<h:panelGroup
+														rendered="#{consultarUsuarioWeb.isDisabled(rowKeyVar) and consultarUsuarioWeb.isEditable(rowKeyVar)}">
+														<div class="textoDifDos" title="#{userOld.userId}">
+															<h:outputText value="#{userOld.userId}" />
+														</div>
+													</h:panelGroup>
+												</div>
+											</rich:column>
+											<rich:column>
+												<div align="left">
+													<h:panelGrid columns="2"
+														rendered="#{!consultarUsuarioWeb.isDisabled(rowKeyVar)}">
+														<his:inputText id="userNameOld" required="true"
+															jsfc="his:inputText" maxlength="50"
+															styleClass="cajaSimple" size="10"
+															value="#{userOld.userName}">
+															<f:validator validatorId="loginAdmin.regexValidator" />
+															<f:attribute name="regex"
+																value="^[a-zA-Z áéíóúAÉÍÓÚÑñ]+$" />
+															<f:attribute name="invalidMessage"
+																value="#{msg.validator_nombres}" />
+														</his:inputText>
+														<his:inputText id="userSurNameOld" required="true"
+															jsfc="his:inputText" maxlength="50"
+															styleClass="cajaSimple" size="10"
+															value="#{userOld.userLastName}">
+															<f:validator validatorId="loginAdmin.regexValidator" />
+															<f:attribute name="regex"
+																value="^[a-zA-Z áéíóúAÉÍÓÚÑñ]+$" />
+															<f:attribute name="invalidMessage"
+																value="#{msg.validator_nombres}" />
+														</his:inputText>
+													</h:panelGrid>
+													<h:panelGroup
+														rendered="#{consultarUsuarioWeb.isDisabled(rowKeyVar) and consultarUsuarioWeb.isEditable(rowKeyVar)}">
+														<h:outputText value="#{userOld.nombreCompleto}"
+															styleClass="textogeneral2" />
+													</h:panelGroup>
+												</div>
+											</rich:column>
+											<rich:column>
+												<div align="center">
+													<h:panelGrid columns="3" border="0" width="100%"
+														rendered="#{!consultarUsuarioWeb.isDisabled(rowKeyVar)}">
+														<h:panelGroup>
+															<his:selectOneMenu styleClass="combo" style="width:50px;"
+																id="tipoDocUserOld" required="true" immediate="true"
+																value="#{userOld.tipoDoc}" jsfc="his:selectOneMenu">
+																<f:selectItems
+																	value="#{consultarUsuarioWeb.listTipoDocs}" />
+															</his:selectOneMenu>
+														</h:panelGroup>
+														<h:panelGroup>
+															<his:inputText label="descripcion" id="userDocumentdOld"
+																required="true" jsfc="his:inputText" maxlength="30"
+																styleClass="cajaSimple" size="10"
+																value="#{userOld.document}" type="DOCUMENTLOGINADMIN">
+																<f:validator validatorId="loginAdmin.regexValidator" />
+																<f:attribute name="regex" value="^[0-9a-zA-Z ]+$" />
+																<f:attribute name="invalidMessage"
+																	value="#{msg.validator_documento}" />
+															</his:inputText>
+														</h:panelGroup>
+														<h:panelGroup>
+															<div align="left" style="width: 2px;">
+																<h:outputText value="*" styleClass="asteriscoRequerido" />
+															</div>
+														</h:panelGroup>
+													</h:panelGrid>
+													<h:panelGroup
+														rendered="#{consultarUsuarioWeb.isDisabled(rowKeyVar) and consultarUsuarioWeb.isEditable(rowKeyVar)}">
+														<div align="left">
+															<h:outputText value="#{userOld.userDocument}"
+																styleClass="textogeneral2" />
+														</div>
+													</h:panelGroup>
+												</div>
+											</rich:column>
+											<rich:column>
+												<div align="left">
+													<h:panelGrid border="0" width="150px">
+														<h:panelGroup
+															rendered="#{!consultarUsuarioWeb.isDisabled(rowKeyVar)}">
+															<his:inputText label="codigo" id="userMailOld"
+																jsfc="his:inputText" maxlength="64"
+																styleClass="cajaSimple" size="18"
+																value="#{userOld.userMail}" required="true">
+																<f:validator validatorId="loginAdmin.emailValidator" />
+															</his:inputText>
+														</h:panelGroup>
+														<h:panelGroup
+															rendered="#{consultarUsuarioWeb.isDisabled(rowKeyVar) and consultarUsuarioWeb.isEditable(rowKeyVar)}">
+															<div class="textoDif" title="#{userOld.userMail}" style="width:150px;">
+																<h:outputText value="#{userOld.userMail}" />
+															</div>
+														</h:panelGroup>
+													</h:panelGrid>
+												</div>
+											</rich:column>
+											<!-- incio expDate -->
+											<rich:column>
+												<div align="left">
+													<h:panelGrid border="0" style="width:100px;">
+														<h:panelGroup
+															rendered="#{!consultarUsuarioWeb.isDisabled(rowKeyVar)}">
+															<rich:calendar id="ctlFechaExpOld" required="true"
+																value="#{userOld.expDate}"
+																locale="es"
+																popup="true" enableManualInput="true"
+																showApplyButton="false"
+																inputClass="cajaSimpleCalendario"
+																inputStyle="width:50px" datePattern="dd/MM/yyyy">
+																<f:validator validatorId="loginAdmin.expDateValidator" />
+															</rich:calendar>
+															<rich:message id="ctlErrorExpOld" for="ctlFechaExpOld"
+																errorClass="message" warnClass="message"
+																showDetail="fase" showSummary="true" />
+														</h:panelGroup>
+														<h:panelGroup
+															rendered="#{consultarUsuarioWeb.isDisabled(rowKeyVar) and consultarUsuarioWeb.isEditable(rowKeyVar)}">
+															<div class="textoDif" title="#{userOld.expDate}" style="width:58px;">
+																<h:outputText value="#{userOld.expDate}" />
+															</div>
+														</h:panelGroup>
+													</h:panelGrid>
+												</div>
+											</rich:column>
+											<!-- fin expDate  -->
+											<rich:column>
+												<div align="center">
+													<his:crudTableButtons
+														crudTableBean="#{consultarUsuarioWeb}"
+														reRender="pgDataListUser,scrollDataTableUser, pgListRelUser"
+														element="#{userOld}" elementIndex="#{rowKeyVar}"
+														idPanelInclude="sessionPaneles"
+														idRichModalPanelAutAdmin="pnlAutorizarAdmin"
+														idRichModalPanelAutDele="pnlAutorizarDele"
+													 />
+												</div>
+											</rich:column>
+										</rich:dataTable>
+									</h:panelGroup>
+									<h:panelGroup>
+										<div style="height: 2px" />
+									</h:panelGroup>
+									<h:panelGroup>
+										<rich:datascroller id="scrollDataTableUser" for="dataListUser"
+											align="center" renderIfSinglePage="false"
+											action="#{consultarUsuarioWeb.inicializaValores}"
+											reRender="pgListRelUser" />
+									</h:panelGroup>
+								</h:panelGrid>
+							</div>
+						</a:region>
+					</h:panelGroup>
+					<h:panelGroup>
+						<rich:message for="pgListRelUser" var="messages"
+							errorClass="txtUnoError" warnClass="txtUnoAlerta"
+							infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+					</h:panelGroup>
+					<h:panelGroup id="pgListRelUser">
+						<h:panelGrid columns="1" width="100%" border="0">
+							<h:panelGroup
+								rendered="#{not empty consultarUsuarioWeb.listRelUser}">
+								<div style="width: 99%" align="left" class="subSec">
+									<h:outputText value="#{msg.consul_usuario_ralacion}" />
+								</div>
+							</h:panelGroup>
+							<h:panelGroup>
+								<div style="height: 6px;" />
+							</h:panelGroup>
+							<h:panelGroup>
+							</h:panelGroup>
+							<h:panelGroup
+								rendered="#{not empty consultarUsuarioWeb.listRelUser}">
+								<div style="width: 100%" align="center">
+									<rich:dataTable cellspacing="1" cellpadding="1" border="0"
+										id="dataListRelUser" styleClass="BordeTablasDos centrarTexto"
+										rowClasses="impar,par" rows="#{msg.rowsPerPage}"
+										style="width:100%" rowKeyVar="rowKeyVar"
+										value="#{consultarUsuarioWeb.listRelUser}" var="itemRelUser">
+										<f:facet name="header">
+											<rich:columnGroup>
+												<rich:column style="width:45%">
+													<h:outputText value="#{msg.consul_usuario_nombrePrestador}" />
+												</rich:column>
+												<rich:column style="width:45%">
+													<h:outputText value="#{msg.consul_usuario_tipoRelacion}" />
+												</rich:column>
+												<rich:column style="width:10%">
+													<h:outputText value="#{msg.consul_usuario_acciones}" />
+												</rich:column>
+											</rich:columnGroup>
+										</f:facet>
+										<rich:column>
+											<div align="left">
+												<h:outputText value="#{itemRelUser.prestador.razonSocial}"
+													styleClass="textogeneral" />
+											</div>
+										</rich:column>
+										<rich:column>
+											<div align="left">
+												<h:outputText
+													value="#{consultarUsuarioWeb.getNombreRelacionFromId(itemRelUser.tipoRelacion)}"
+													styleClass="textogeneral" />
+											</div>
+										</rich:column>
+										<rich:column>
+											<h:panelGrid columns="6">
+												<h:panelGroup>
+													<a:commandButton id="ctlDesautorizar" ajaxSingle="true"
+														styleClass="botonDesautorizarNivelDos"
+														ignoreDupResponses="true" reRender="sessionPaneles"
+														action="#{consultarUsuarioWeb.cargarDesautorizarPrest(itemRelUser)}"
+														oncomplete="Richfaces.showModalPanel('pnlDesautorizar');"
+														rendered="#{((itemRelUser.tipoRelacion == 1 and identity.hasRole(msg.permiso_desautorizar_administrador)) ? true : ((itemRelUser.tipoRelacion == 2 and identity.hasRole(msg.permiso_desautorizar_delegado)) ? true : false))}" />
+													<rich:toolTip for="ctlDesautorizar" styleClass="ToolTipUno"
+														direction="top-left" followMouse="true"
+														horizontalOffset="4">
+														<h:outputText value="#{msg.desautorizar}" escape="false" />
+													</rich:toolTip>
+												</h:panelGroup>
+												<h:panelGroup
+													rendered="#{((itemRelUser.tipoRelacion == 1 and !identity.hasRole(msg.permiso_desautorizar_administrador)) ? true : ((itemRelUser.tipoRelacion == 2 and !identity.hasRole(msg.permiso_desautorizar_delegado)) ? true : false))}">
+													<h:graphicImage id="ctlNoDesautorizar"
+														value="../images/boton_Nodesautorizar.gif"
+														styleClass="botonNoDesautorizarNivelDos"
+														rendered="#{((itemRelUser.tipoRelacion == 1 and !identity.hasRole(msg.permiso_desautorizar_administrador)) ? true : ((itemRelUser.tipoRelacion == 2 and !identity.hasRole(msg.permiso_desautorizar_delegado)) ? true : false))}" />
+													<rich:toolTip for="ctlNoDesautorizar"
+														styleClass="ToolTipUno" direction="top-left"
+														followMouse="true" horizontalOffset="4">
+														<h:outputText value="#{msg.no_desautorizar}"
+															escape="false" />
+													</rich:toolTip>
+												</h:panelGroup>
+												<h:panelGroup>
+													<div style="height: 3px" />
+												</h:panelGroup>
+												<h:panelGroup rendered="#{itemRelUser.tipoRelacion == 1 and identity.hasRole(msg.permiso_autorizar_administrador)}">
+													<a:commandButton id="ctlGesApliAdmin" ajaxSingle="true"
+														styleClass="botonAdminAdminNivelDos"
+														ignoreDupResponses="true" reRender="sessionPaneles"
+														action="#{consultarUsuarioWeb.cargarGesAplicacionesAdmin(itemRelUser)}"
+														oncomplete="Richfaces.showModalPanel('pnlGestionApliAdmin');" />
+													<rich:toolTip for="ctlGesApliAdmin" styleClass="ToolTipUno"
+														direction="top-left" followMouse="true"
+														horizontalOffset="4">
+														<h:outputText value="#{msg.admin_apli_admin_titulo}"
+															escape="false" />
+													</rich:toolTip>
+												</h:panelGroup>
+												<h:panelGroup>
+													<div style="height: 3px" />
+												</h:panelGroup>
+												<h:panelGroup rendered="#{itemRelUser.tipoRelacion == 2 and identity.hasRole(msg.permiso_autorizar_delegado)}">
+													<a:commandButton id="ctlGesApliDele" ajaxSingle="true"
+														styleClass="botonAdminDeleNivelDos"
+														ignoreDupResponses="true" reRender="sessionPaneles"
+														action="#{consultarUsuarioWeb.cargarGesAplicacionesDelegado(itemRelUser)}"
+														oncomplete="Richfaces.showModalPanel('pnlGestionApliDele');" />
+													<rich:toolTip for="ctlGesApliDele" styleClass="ToolTipUno"
+														direction="top-left" followMouse="true"
+														horizontalOffset="4">
+														<h:outputText value="#{msg.admin_apli_dele_titulo}"
+															escape="false" />
+													</rich:toolTip>
+												</h:panelGroup>
+											</h:panelGrid>
+										</rich:column>
+									</rich:dataTable>
+								</div>
+							</h:panelGroup>
+							<h:panelGroup>
+								<div style="height: 2px" />
+							</h:panelGroup>
+							<h:panelGroup>
+								<rich:datascroller id="scrollDataRelUser" for="dataListRelUser"
+									align="center" renderIfSinglePage="false" />
+							</h:panelGroup>
+						</h:panelGrid>
+					</h:panelGroup>
+					<h:panelGroup
+						rendered="#{identity.hasRole(msg.permiso_consultar_usuario)}">
+						<div style="width: 100%" align="left">
+							<h:panelGrid columns="2" width="13%" border="0">
+								<h:panelGroup>
+								</h:panelGroup>
+								<h:panelGroup>
+									<h:outputText value="*" styleClass="asteriscoRequerido" />
+									<h:outputText value="#{msg.campoRequerido}"
+										styleClass="textogeneral3" />
+								</h:panelGroup>
+							</h:panelGrid>
+						</div>
+					</h:panelGroup>
+					<h:panelGroup>
+						<div style="height: 5px" />
+					</h:panelGroup>
+					<h:panelGrid columns="1" width="100%" border="0"
+						rendered="#{!identity.hasRole(msg.permiso_consultar_usuario)}">
+						<h:panelGroup>
+							<div align="center" style="height: 100px; margin-top: 10px;">
+								<h:outputText value="#{msg.error_autorizacion_acceso_pagina}"
+									styleClass="txtUnoAlerta" />
+							</div>
+						</h:panelGroup>
+					</h:panelGrid>
+				</a:region>
+			</a:form>
+			<h:panelGroup id="sessionPaneles">
+				<a:include viewId="../modales/modalAutorizarAdministrador.xhtml"
+					id="includePnlAutorizarAdmin"
+					rendered="#{identity.hasRole(msg.permiso_autorizar_administrador)}" />
+				<a:include viewId="../modales/modalAutorizarDelegado.xhtml"
+					id="includePnlAutorizarDele" />
+				<a:include viewId="../modales/modalConfirDesautorizar.xhtml"
+					id="includePnlDesautorizar" />
+				<a:include viewId="../modales/GestionAplicacionesAdmin.xhtml"
+					id="includePnlGesApliAdmin"
+					rendered="#{identity.hasRole(msg.permiso_autorizar_administrador)}" />
+				<a:include viewId="../modales/GestionAplicacionesDele.xhtml"
+					id="includePnlGesApliDele"
+					rendered="#{identity.hasRole(msg.permiso_autorizar_delegado)}" />
+			</h:panelGroup>
+		</f:view>
+	</ui:define>
+</ui:composition>

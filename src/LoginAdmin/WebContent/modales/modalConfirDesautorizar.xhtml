@@ -1,0 +1,55 @@
+<rich:modalPanel id="pnlDesautorizar" width="320" height="70" autosized="true" resizeable="false" moveable="true"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://richfaces.org/a4j"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:s="http://jboss.com/products/seam/taglib"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:his="http://colsanitas.com/jsf/facelets">
+	
+		<a:form id="formDesautorizar">
+			<a:region renderRegionOnly="false" id="regionFormDesauUser">
+			<his:progressBar id="prFormDesautorizar" idRegion="regionFormDesauUser" />
+			<rich:message for="formRegAdmin" var="messages"
+				errorClass="txtUnoError" warnClass="txtUnoAlerta"
+				infoClass="txtUnoInfo" showDetail="false" showSummary="true" />
+				<h:panelGrid styleClass="contenido" columns="1" width="100%" id="panelContenidoRes" cellpadding="0" cellspacing="0" >
+					<h:panelGroup>
+						<div style="height:25px;"/>
+					</h:panelGroup>
+					<h:panelGroup>
+						<div style="width: 100%" align="center">
+							<h:outputText value="#{msg.consul_usuario_confir_desau}" styleClass="txtUnoAlerta" />
+						</div>
+					</h:panelGroup>
+					<br/>
+					<h:panelGroup id="pgFunciones">
+						<div align="right" style="width: 99%">
+							<h:panelGrid columns="3">
+								<h:panelGroup>
+									<a:commandButton styleClass="boton" 
+										value="#{msg.aceptar}" 
+										ajaxSingle="true" immediate="true" 
+										action="#{consultarUsuarioWeb.desautorizarPrest}"
+										reRender="pgListRelUser"
+										oncomplete="#{rich:component('pnlDesautorizar')}.hide();" />
+								</h:panelGroup>
+								<h:panelGroup><div style="width: 5px" /></h:panelGroup>
+								<h:panelGroup>
+									<a:commandButton 
+										styleClass="boton" 
+										value="#{msg.cancelar}" 
+										ajaxSingle="true" immediate="true"
+										action="#{consultarUsuarioWeb.cancelardesautorizarPrest}" 
+										oncomplete="#{rich:component('pnlDesautorizar')}.hide();" />
+								</h:panelGroup>
+							</h:panelGrid>
+						</div>
+					</h:panelGroup>
+				</h:panelGrid>		
+			</a:region>
+		</a:form>
+	<rich:hotKey key="Esc" handler="#{rich:component('pnlDesautorizar')}.hide();" />
+</rich:modalPanel>
